@@ -7,13 +7,9 @@ public class Horse extends Piece {
     public Horse(Color color) {
         super(color);
         this.code = 6;
+        if(color.equals(Color.BLACK))
+            this.code *= -1;
         this.strCode = "M";
-    }
-
-    @Override
-    public boolean canMove(Point point) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canMove'");
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import controllers.BoardComponentController;
 import models.Advisor;
 import models.Board;
 import models.Canon;
@@ -18,6 +19,7 @@ import models.Elephant;
 import models.General;
 import models.Horse;
 import models.Piece;
+import models.Point;
 import models.Soldier;
 
 public class BoardComponent extends JComponent {
@@ -32,10 +34,15 @@ public class BoardComponent extends JComponent {
     public static final String HORSE_PATH = "resources/imgs/xiangqi_horses.png";
     public static final String SOLDIER_PATH = "resources/imgs/xiangqi_soldiers.png";
 
+    public static final String HIGHLIGHT_BLUE_PATH = "resources/imgs/xiangqi_highlight_blue.png";
+
     public static int FIT_ROW_VALUE = 10;
     public static int FIT_COL_VALUE = 10;
     public static int CELL_ROW = 67;
     public static int CELL_COL = 65;
+
+    public static final int FIRST_POINT_X = 33;
+    public static final int FIRST_POINT_Y = 30;
 
     private int panelWidth;
     private int panelHeight;
@@ -47,12 +54,14 @@ public class BoardComponent extends JComponent {
         this.panelWidth = panelWidth;
         this.panelHeight = panelHeight;
         this.piecesImage = new ArrayList<BufferedImage>();
+        this.addMouseListener(new BoardComponentController(this));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         drawBoard(g);
         drawPieces(g);
+        drawHighLight(g, board.getPieces().get(25));
     }
     
 
@@ -100,8 +109,8 @@ public class BoardComponent extends JComponent {
                 int scaledHeight = (int) (imageHeight * scale);
 
                 // Reverse the position in order to same as board array in board model
-                int row = (9 - pieceModel.getPoint().getX()) * CELL_ROW + FIT_ROW_VALUE;
-                int col = (8 - pieceModel.getPoint().getY()) * CELL_COL + FIT_COL_VALUE;
+                int row = pieceModel.getPoint().getX() * CELL_ROW + FIT_ROW_VALUE;
+                int col = pieceModel.getPoint().getY() * CELL_COL + FIT_COL_VALUE;
     
                 g.drawImage(image, col, row, scaledWidth, scaledHeight, null);
             }
@@ -111,6 +120,34 @@ public class BoardComponent extends JComponent {
 
     }
 
+    private void drawHighLight(Graphics g, Piece pieceModel) {
+        try {
+            List<Point> posiblePoints = pieceModel.getAllPossibleMoves();
+            File file = new File(HIGHLIGHT_BLUE_PATH);
+            BufferedImage image = ImageIO.read(file);
+
+            int imageWidth = image.getWidth();
+            int imageHeight = image.getHeight();
+
+            double scaleWidth = (double) imageWidth * 0.0035 / 100;
+            double scaleHeight = (double) imageHeight * 0.0035 / 100;
+
+            double scale = Math.min(scaleWidth, scaleHeight);
+    
+                int scaledWidth = (int) (imageWidth * scale);
+                int scaledHeight = (int) (imageHeight * scale);
+
+            for (Point point : posiblePoints) {
+                int row = (point.getX()) * CELL_ROW + 28;
+                int col = (point.getY()) * CELL_COL + 28;
+
+                g.drawImage(image, col, row, scaledWidth, scaledHeight, null);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadPieces() {
         this.piecesImage = new ArrayList<>();
         try {
@@ -118,7 +155,7 @@ public class BoardComponent extends JComponent {
             for (Piece pieceModel : piecesModel) {
                 int x, y, width, height;
                 String path = "";
-                if(pieceModel.getColor().equals(Color.BLACK)) {
+                if(pieceModel.getColor().equals(Color.RED)) {
                     x = 0;
                     y = 0;
                     width = 100;

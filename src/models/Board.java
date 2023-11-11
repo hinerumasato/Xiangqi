@@ -164,11 +164,16 @@ public class Board {
     }
 
     public void initBoard() {
+
+        for(int i = 0; i < BOARD_ROWS; i++)
+            for(int j = 0; j < BOARD_COLS; j++)
+                board[i][j] = 0;
+
         for (Piece piece : pieces) {
             int row = piece.getPoint().getX();
             int col = piece.getPoint().getY();
 
-            board[row][col] = piece.getColor().equals(Color.RED) ? piece.getCode() : piece.getCode() * -1;
+            board[row][col] = piece.getCode();
         }
     }
 

@@ -7,14 +7,11 @@ public class Elephant extends Piece {
     public Elephant(Color color) {
         super(color);
         this.code = 4;
+        if(color.equals(Color.BLACK))
+            this.code *= -1;
         this.strCode = "V";
     }
 
-    @Override
-    public boolean canMove(Point point) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canMove'");
-    }
 
     @Override
     public List<Point> getAllPossibleMoves() {

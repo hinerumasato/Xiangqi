@@ -44,10 +44,15 @@ public abstract class Piece {
         this.strCode = strCode;
     }
 
-    public abstract boolean canMove(Point point);
+    public boolean canMove(Point point) {
+        List<Point> possibleMoves = getAllPossibleMoves();
+        return possibleMoves.contains(point);
+    }
     public abstract List<Point> getAllPossibleMoves();
     public void move(Point point) {
         if(canMove(point))
             this.setPoint(point);
+        Board.getInstance().initBoard();
+        Board.getInstance().printBoard();
     }
 }

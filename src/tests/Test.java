@@ -7,6 +7,9 @@ public class Test {
     public static void main(String[] args) {
         Board board = Board.getInstance();
         Piece chariot = board.getPieces().get(16);
-        System.out.println(chariot.getAllPossibleMoves());
+        Piece cannon = board.getPieces().get(25);
+        System.out.println(cannon.getAllPossibleMoves());
+
+
     }
 }

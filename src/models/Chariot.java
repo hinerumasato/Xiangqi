@@ -8,14 +8,11 @@ public class Chariot extends Piece {
     public Chariot(Color color) {
         super(color);
         this.code = 3;
+        if(color.equals(Color.BLACK))
+            this.code *= -1;
         this.strCode = "X";
     }
 
-    @Override
-    public boolean canMove(Point point) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canMove'");
-    }
 
     @Override
     public List<Point> getAllPossibleMoves() {
