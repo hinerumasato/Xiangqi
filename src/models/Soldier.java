@@ -36,7 +36,7 @@ public class Soldier extends Piece {
 
         if (isOverLake(point)) {
             // check for top
-            if (getColor().equals(color.RED)) {
+            if (getColor().equals(Color.RED)) {
                 if (board.isEmptyPosition(top)) {
                     result.add(top);
                 } else if (isOpponentPiece(top)) {
@@ -64,7 +64,7 @@ public class Soldier extends Piece {
                     result.add(now);
                 }
             } else {
-                result.add(now);
+                // result.add(now);
             }
 
             // check for left
@@ -77,10 +77,10 @@ public class Soldier extends Piece {
                     result.add(now);
                 }
             } else {
-                result.add(now);
+                // result.add(now);
             }
         } else {
-            if (getColor().equals(color.RED)) {
+            if (getColor().equals(Color.RED)) {
                 if (board.isEmptyPosition(top)) {
                     result.add(top);
                 } else {
