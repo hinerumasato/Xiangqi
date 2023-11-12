@@ -61,7 +61,7 @@ public class BoardComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         drawBoard(g);
         drawPieces(g);
-        drawHighLight(g, board.getPieces().get(25));
+        drawHighLight(g, board.getPieces().get(16));
     }
     
 

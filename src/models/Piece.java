@@ -53,6 +53,27 @@ public abstract class Piece {
         if(canMove(point))
             this.setPoint(point);
         Board.getInstance().initBoard();
-        Board.getInstance().printBoard();
     }
+
+    public boolean isRedPiece(Point point) {
+        Piece piece = Board.getInstance().getPieceByPoint(point);
+        if(piece == null)
+            return false;
+        return piece.getColor().equals(Color.RED);
+    }
+
+    public boolean isBlackPiece(Point point) {
+        Piece piece = Board.getInstance().getPieceByPoint(point);
+        if(piece == null)
+            return false;
+        return piece.getColor().equals(Color.BLACK);
+    }
+
+    public boolean isOpponentPiece(Point point) {
+        Piece opponentPiece = Board.getInstance().getPieceByPoint(point);
+        if(opponentPiece == null)
+            return false;
+        return !this.getColor().equals(opponentPiece.getColor());
+    }
+
 }

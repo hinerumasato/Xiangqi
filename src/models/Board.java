@@ -202,4 +202,15 @@ public class Board {
         this.pieces = pieces;
     }
 
+    public Piece getPieceByPoint(Point point) {
+        for(Piece piece : pieces)
+            if(piece.getPoint().equals(point))
+                return piece;
+        return null;
+    }
+
+    public boolean isEmptyPosition(Point point) {
+        return getPieceByPoint(point) == null;
+    }
+
 }

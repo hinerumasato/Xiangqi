@@ -8,7 +8,7 @@ public class Canon extends Piece {
     public Canon(Color color) {
         super(color);
         this.code = 2;
-        if(color.equals(Color.BLACK))
+        if (color.equals(Color.BLACK))
             this.code *= -1;
         this.strCode = "P";
     }
@@ -22,17 +22,20 @@ public class Canon extends Piece {
         int[][] matrix = board.getBoard();
         // check y for right
         for (int i = y + 1; i < Board.BOARD_COLS; i++) {
-            if (matrix[x][i] == 0)
+            if (Board.getInstance().isEmptyPosition(new Point(x, i)))
                 result.add(new Point(x, i));
             else {
                 int fuseCordX = x;
                 int fuseCordY = i;
                 for (int j = fuseCordY + 1; j < Board.BOARD_COLS; j++) {
-                    if (matrix[fuseCordX][j] < 0) {
-                        result.add(new Point(fuseCordX, j));
-                        break;
-                    } else if (matrix[fuseCordX][j] > 0)
-                        break;
+                    Point point = new Point(fuseCordX, j);
+                    if (!Board.getInstance().isEmptyPosition(point)) {
+                        if (isOpponentPiece(point)) {
+                            result.add(point);
+                            break;
+                        } else if (!isOpponentPiece(point))
+                            break;
+                    }
                 }
                 break;
             }
@@ -46,11 +49,14 @@ public class Canon extends Piece {
                 int fuseCordX = x;
                 int fuseCordY = i;
                 for (int j = fuseCordY - 1; j >= 0; j--) {
-                    if (matrix[fuseCordX][j] < 0) {
-                        result.add(new Point(fuseCordX, j));
-                        break;
-                    } else if (matrix[j][fuseCordY] > 0)
-                        break;
+                    Point point = new Point(fuseCordX, j);
+                    if (!Board.getInstance().isEmptyPosition(point)) {
+                        if (isOpponentPiece(point)) {
+                            result.add(point);
+                            break;
+                        } else if (!isOpponentPiece(point))
+                            break;
+                    }
                 }
                 break;
             }
@@ -64,11 +70,14 @@ public class Canon extends Piece {
                 int fuseCordX = i;
                 int fuseCordY = y;
                 for (int j = fuseCordX + 1; j < Board.BOARD_COLS; j++) {
-                    if (matrix[j][fuseCordY] < 0) {
-                        result.add(new Point(j, fuseCordY));
-                        break;
-                    } else if (matrix[j][fuseCordY] > 0)
-                        break;
+                    Point point = new Point(j, fuseCordY);
+                    if (!Board.getInstance().isEmptyPosition(point)) {
+                        if (isOpponentPiece(point)) {
+                            result.add(point);
+                            break;
+                        } else if (!isOpponentPiece(point))
+                            break;
+                    }
                 }
                 break;
             }
@@ -80,11 +89,14 @@ public class Canon extends Piece {
                 int fuseCordX = i;
                 int fuseCordY = y;
                 for (int j = fuseCordX - 1; j >= 0; j--) {
-                    if (matrix[j][fuseCordY] < 0) {
-                        result.add(new Point(j, fuseCordY));
-                        break;
-                    } else if (matrix[j][fuseCordY] > 0)
-                        break;
+                    Point point = new Point(j, fuseCordY);
+                    if (!Board.getInstance().isEmptyPosition(point)) {
+                        if (isOpponentPiece(point)) {
+                            result.add(point);
+                            break;
+                        } else if (!isOpponentPiece(point))
+                            break;
+                    }
                 }
                 break;
             }

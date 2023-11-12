@@ -20,44 +20,53 @@ public class Chariot extends Piece {
         int x = this.getPoint().getX();
         int y = this.getPoint().getY();
         Board board = Board.getInstance();
-        int[][] matrix = board.getBoard();
-        // Check y
-        for (int i = y + 1; i < Board.BOARD_COLS; i++)
-            if (matrix[x][i] == 0)
-                result.add(new Point(x, i));
-            else if (matrix[x][i] < 0) {
-                result.add(new Point(x, i));
-                break;
-            } else
-                break;
         // Check y for right
-        for (int i = y - 1; i >= 0; i--)
-            if (matrix[x][i] == 0)
-                result.add(new Point(x, i));
-            else if (matrix[x][i] < 0) {
-                result.add(new Point(x, i));
+        for (int i = y + 1; i < Board.BOARD_COLS; i++) {
+            Point p = new Point(x, i);
+            if (board.isEmptyPosition(p))
+                result.add(p);
+            else if (isOpponentPiece(p)) {
+                result.add(p);
                 break;
             } else
                 break;
-        // Check x
-        for (int i = x + 1; i < Board.BOARD_ROWS; i++)
-            if (matrix[i][y] == 0)
-                result.add(new Point(i, y));
-            else if (matrix[i][y] < 0) {
-                result.add(new Point(i, y));
+        }
+        // check y for left
+        for (int i = y - 1; i >= 0; i--) {
+            Point p = new Point(x, i);
+            if (board.isEmptyPosition(p))
+                result.add(p);
+            else if (isOpponentPiece(p)) {
+                result.add(p);
                 break;
             } else
                 break;
-        // Check x for top
-        for (int i = x - 1; i >= 0; i--)
-            if (matrix[i][y] == 0)
-                result.add(new Point(i, y));
-            else if (matrix[i][y] < 0) {
-                result.add(new Point(i, y));
+        }
+        // And also check x for 2 direction top and bottom
+        for (int i = x + 1; i < Board.BOARD_ROWS; i++) {
+            Point p = new Point(i, y);
+            if (board.isEmptyPosition(p))
+                result.add(p);
+            else if (isOpponentPiece(p)) {
+                result.add(p);
                 break;
             } else
                 break;
+        }
+        
+        for (int i = x - 1; i >= 0; i--) {
+            Point p = new Point(i, y);
+            if (board.isEmptyPosition(p))
+                result.add(p);
+            else if (isOpponentPiece(p)) {
+                result.add(p);
+                break;
+            } else
+                break;
+        }
+
         return result;
+        
     }
 
 }

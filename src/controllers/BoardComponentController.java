@@ -23,8 +23,7 @@ public class BoardComponentController extends MouseAdapter {
         int x = (int) Math.round((e.getPoint().getX() - BoardComponent.FIRST_POINT_X) / BoardComponent.CELL_COL);
         int y = (int) Math.round((e.getPoint().getY() - BoardComponent.FIRST_POINT_Y) / BoardComponent.CELL_ROW);
         Point point = new Point(y, x);
-        System.out.println(point);
-        Piece piece = Board.getInstance().getPieces().get(25);
+        Piece piece = Board.getInstance().getPieces().get(16);
         piece.move(point);
         boardComponent.revalidate();
         boardComponent.repaint();
