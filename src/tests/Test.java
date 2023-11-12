@@ -9,6 +9,7 @@ public class Test {
         Piece chariot = board.getPieces().get(16);
         Piece cannon = board.getPieces().get(25);
         System.out.println(chariot.getAllPossibleMoves());
+        board.printBoard();
 
 
     }

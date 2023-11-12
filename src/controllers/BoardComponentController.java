@@ -11,20 +11,40 @@ import views.BoardComponent;
 public class BoardComponentController extends MouseAdapter {
 
     private BoardComponent boardComponent;
+    private boolean isSelected;
 
     public BoardComponentController(BoardComponent boardComponent) {
         this.boardComponent = boardComponent;
+        this.isSelected = false;
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
+    private Point calculatePoint(MouseEvent e) {
         // In UI, X and Y will be swapped compared to X and Y in the model, so using new Point(y, x)
-
         int x = (int) Math.round((e.getPoint().getX() - BoardComponent.FIRST_POINT_X) / BoardComponent.CELL_COL);
         int y = (int) Math.round((e.getPoint().getY() - BoardComponent.FIRST_POINT_Y) / BoardComponent.CELL_ROW);
         Point point = new Point(y, x);
-        Piece piece = Board.getInstance().getPieces().get(16);
-        piece.move(point);
+        return point;
+    } 
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+        Board board = Board.getInstance();
+
+        
+        if(!isSelected) {
+            Point point = calculatePoint(e);
+            if(!board.isEmptyPosition(point)) {
+                Piece piece = board.getPieceByPoint(point);
+                boardComponent.setSelectedPiece(piece);
+            }
+        } else {
+            Point point = calculatePoint(e);
+            Piece piece = boardComponent.getSelectedPiece();
+            piece.move(point);
+            boardComponent.setSelectedPiece(null);
+        }
+        isSelected = !isSelected;
         boardComponent.revalidate();
         boardComponent.repaint();
 

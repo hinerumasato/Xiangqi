@@ -48,6 +48,7 @@ public class BoardComponent extends JComponent {
     private int panelHeight;
     private Board board;
     private List<BufferedImage> piecesImage;
+    private Piece selectedPiece;
 
     public BoardComponent(Board board, int panelWidth, int panelHeight) {
         this.board = board;
@@ -61,9 +62,8 @@ public class BoardComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         drawBoard(g);
         drawPieces(g);
-        drawHighLight(g, board.getPieces().get(16));
+        drawHighLight(g, selectedPiece);
     }
-    
 
     private void drawBoard(Graphics g) {
         try {
@@ -96,55 +96,57 @@ public class BoardComponent extends JComponent {
 
                 BufferedImage image = piecesImage.get(i);
                 Piece pieceModel = piecesModel.get(i);
-    
+
                 int imageWidth = image.getWidth();
                 int imageHeight = image.getHeight();
-    
+
                 double scaleWidth = 50 / (double) imageWidth;
                 double scaleHeight = 50 / (double) imageHeight;
-    
+
                 double scale = Math.min(scaleWidth, scaleHeight);
-    
+
                 int scaledWidth = (int) (imageWidth * scale);
                 int scaledHeight = (int) (imageHeight * scale);
 
                 // Reverse the position in order to same as board array in board model
                 int row = pieceModel.getPoint().getX() * CELL_ROW + FIT_ROW_VALUE;
                 int col = pieceModel.getPoint().getY() * CELL_COL + FIT_COL_VALUE;
-    
+
                 g.drawImage(image, col, row, scaledWidth, scaledHeight, null);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     private void drawHighLight(Graphics g, Piece pieceModel) {
-        try {
-            List<Point> posiblePoints = pieceModel.getAllPossibleMoves();
-            File file = new File(HIGHLIGHT_BLUE_PATH);
-            BufferedImage image = ImageIO.read(file);
+        if (pieceModel != null) {
+            try {
+                List<Point> posiblePoints = pieceModel.getAllPossibleMoves();
+                File file = new File(HIGHLIGHT_BLUE_PATH);
+                BufferedImage image = ImageIO.read(file);
 
-            int imageWidth = image.getWidth();
-            int imageHeight = image.getHeight();
+                int imageWidth = image.getWidth();
+                int imageHeight = image.getHeight();
 
-            double scaleWidth = (double) imageWidth * 0.0035 / 100;
-            double scaleHeight = (double) imageHeight * 0.0035 / 100;
+                double scaleWidth = (double) imageWidth * 0.0035 / 100;
+                double scaleHeight = (double) imageHeight * 0.0035 / 100;
 
-            double scale = Math.min(scaleWidth, scaleHeight);
-    
+                double scale = Math.min(scaleWidth, scaleHeight);
+
                 int scaledWidth = (int) (imageWidth * scale);
                 int scaledHeight = (int) (imageHeight * scale);
 
-            for (Point point : posiblePoints) {
-                int row = (point.getX()) * CELL_ROW + 28;
-                int col = (point.getY()) * CELL_COL + 28;
+                for (Point point : posiblePoints) {
+                    int row = (point.getX()) * CELL_ROW + 28;
+                    int col = (point.getY()) * CELL_COL + 28;
 
-                g.drawImage(image, col, row, scaledWidth, scaledHeight, null);
+                    g.drawImage(image, col, row, scaledWidth, scaledHeight, null);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch(Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -155,7 +157,7 @@ public class BoardComponent extends JComponent {
             for (Piece pieceModel : piecesModel) {
                 int x, y, width, height;
                 String path = "";
-                if(pieceModel.getColor().equals(Color.RED)) {
+                if (pieceModel.getColor().equals(Color.RED)) {
                     x = 0;
                     y = 0;
                     width = 100;
@@ -166,11 +168,11 @@ public class BoardComponent extends JComponent {
                     width = 100;
                     height = 100;
                 }
-                if(pieceModel instanceof Advisor) 
+                if (pieceModel instanceof Advisor)
                     path = ADVISOR_PATH;
-                else if(pieceModel instanceof Canon)
-                    path = CANNON_PATH;                
-                else if(pieceModel instanceof Chariot)
+                else if (pieceModel instanceof Canon)
+                    path = CANNON_PATH;
+                else if (pieceModel instanceof Chariot)
                     path = CHARIOT_PATH;
                 else if (pieceModel instanceof Elephant)
                     path = ELEPHANT_PATH;
@@ -189,4 +191,14 @@ public class BoardComponent extends JComponent {
             e.printStackTrace();
         }
     }
+
+
+    public void setSelectedPiece(Piece selectedPiece) {
+        this.selectedPiece = selectedPiece;
+    }
+
+    public Piece getSelectedPiece() {
+        return selectedPiece;
+    }
+    
 }

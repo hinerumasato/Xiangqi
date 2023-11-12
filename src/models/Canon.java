@@ -69,7 +69,7 @@ public class Canon extends Piece {
             else {
                 int fuseCordX = i;
                 int fuseCordY = y;
-                for (int j = fuseCordX + 1; j < Board.BOARD_COLS; j++) {
+                for (int j = fuseCordX + 1; j < Board.BOARD_ROWS; j++) {
                     Point point = new Point(j, fuseCordY);
                     if (!Board.getInstance().isEmptyPosition(point)) {
                         if (isOpponentPiece(point)) {
@@ -82,6 +82,7 @@ public class Canon extends Piece {
                 break;
             }
         }
+        
         for (int i = x - 1; i >= 0; i--) {
             if (matrix[i][y] == 0)
                 result.add(new Point(i, y));
