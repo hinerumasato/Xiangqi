@@ -37,14 +37,15 @@ public class BoardComponentController extends MouseAdapter {
             if(!board.isEmptyPosition(point)) {
                 Piece piece = board.getPieceByPoint(point);
                 boardComponent.setSelectedPiece(piece);
+                isSelected = true;
             }
         } else {
             Point point = calculatePoint(e);
             Piece piece = boardComponent.getSelectedPiece();
             piece.move(point);
             boardComponent.setSelectedPiece(null);
+            isSelected = false;
         }
-        isSelected = !isSelected;
         boardComponent.revalidate();
         boardComponent.repaint();
 

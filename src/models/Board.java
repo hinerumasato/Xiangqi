@@ -212,5 +212,4 @@ public class Board {
     public boolean isEmptyPosition(Point point) {
         return getPieceByPoint(point) == null;
     }
-
 }
