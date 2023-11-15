@@ -48,14 +48,14 @@ public class Horse extends Piece {
             if (x - 1 >= 0) {
                 if (y + 1 < Board.BOARD_COLS) {
                     Point p = new Point(x - 1, y + 1);
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
 
                 if (y - 1 >= 0) {
                     Point p = new Point(x - 1, y - 1);
 
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
             }
@@ -67,14 +67,14 @@ public class Horse extends Piece {
             if (x + 1 < Board.BOARD_ROWS) {
                 if (y + 1 < Board.BOARD_COLS) {
                     Point p = new Point(x + 1, y + 1);
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
 
                 if (y - 1 >= 0) {
                     Point p = new Point(x + 1, y - 1);
 
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
             }
@@ -87,13 +87,13 @@ public class Horse extends Piece {
             if (y - 1 >= 0) {
                 if (x - 1 >= 0) {
                     Point p = new Point(x - 1, y - 1);
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
 
                 if (x + 1 < Board.BOARD_ROWS) {
                     Point p = new Point(x + 1, y - 1);
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
             }
@@ -106,12 +106,12 @@ public class Horse extends Piece {
             if (y + 1 < Board.BOARD_COLS) {
                 if (x - 1 >= 0) {
                     Point p = new Point(x - 1, y + 1);
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
                 if (x + 1 < Board.BOARD_ROWS) {
                     Point p = new Point(x + 1, y + 1);
-                    if (board.isEmptyPosition(p) || this.isOpponentPiece(p))
+                    if (board.isEmptyPosition(p) || board.isOpponentPiece(this, p))
                         result.add(p);
                 }
             }

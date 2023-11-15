@@ -27,7 +27,7 @@ public class Soldier extends Piece {
             top = new Point(x - 1, y);
         } else top = new Point(x + 1, y);
 
-        if(board.isEmptyPosition(top) || isOpponentPiece(top)) {
+        if(board.isEmptyPosition(top) || board.isOpponentPiece(this, top)) {
             result.add(top);
         }
 
@@ -35,13 +35,13 @@ public class Soldier extends Piece {
 
             if(y - 1 >= 0) {
                 Point pLeft = new Point(x, y - 1);
-                if(board.isEmptyPosition(pLeft) || isOpponentPiece(pLeft))
+                if(board.isEmptyPosition(pLeft) || board.isOpponentPiece(this, pLeft))
                     result.add(pLeft);
             }
 
             if(y + 1 < Board.BOARD_COLS) {
                 Point pRight = new Point(x, y + 1);
-                if(board.isEmptyPosition(pRight) || isOpponentPiece(pRight))
+                if(board.isEmptyPosition(pRight) || board.isOpponentPiece(this, pRight))
                     result.add(pRight);
             }
         }

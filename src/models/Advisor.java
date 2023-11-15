@@ -18,7 +18,7 @@ public class Advisor extends Piece {
         Board board = Board.getInstance();
         List<Point> result = new ArrayList<Point>();
         for (Point point : points) {
-            if(board.isInArch(getColor(), point) && (board.isEmptyPosition(point) || isOpponentPiece(point)))
+            if(board.isInArch(getColor(), point) && (board.isEmptyPosition(point) || board.isOpponentPiece(this, point)))
                 result.add(point);
         }
         return result;

@@ -96,11 +96,4 @@ public abstract class Piece {
         return piece.getColor().equals(Color.BLACK);
     }
 
-    public boolean isOpponentPiece(Point point) {
-        Piece opponentPiece = Board.getInstance().getPieceByPoint(point);
-        if(opponentPiece == null)
-            return false;
-        return !this.getColor().equals(opponentPiece.getColor());
-    }
-
 }

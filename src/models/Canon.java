@@ -30,10 +30,10 @@ public class Canon extends Piece {
                 for (int j = fuseCordY + 1; j < Board.BOARD_COLS; j++) {
                     Point point = new Point(fuseCordX, j);
                     if (!Board.getInstance().isEmptyPosition(point)) {
-                        if (isOpponentPiece(point)) {
+                        if (board.isOpponentPiece(this, point)) {
                             result.add(point);
                             break;
-                        } else if (!isOpponentPiece(point))
+                        } else if (!board.isOpponentPiece(this, point))
                             break;
                     }
                 }
@@ -51,10 +51,10 @@ public class Canon extends Piece {
                 for (int j = fuseCordY - 1; j >= 0; j--) {
                     Point point = new Point(fuseCordX, j);
                     if (!Board.getInstance().isEmptyPosition(point)) {
-                        if (isOpponentPiece(point)) {
+                        if (board.isOpponentPiece(this, point)) {
                             result.add(point);
                             break;
-                        } else if (!isOpponentPiece(point))
+                        } else if (!board.isOpponentPiece(this, point))
                             break;
                     }
                 }
@@ -72,10 +72,10 @@ public class Canon extends Piece {
                 for (int j = fuseCordX + 1; j < Board.BOARD_ROWS; j++) {
                     Point point = new Point(j, fuseCordY);
                     if (!Board.getInstance().isEmptyPosition(point)) {
-                        if (isOpponentPiece(point)) {
+                        if (board.isOpponentPiece(this, point)) {
                             result.add(point);
                             break;
-                        } else if (!isOpponentPiece(point))
+                        } else if (!board.isOpponentPiece(this, point))
                             break;
                     }
                 }
@@ -92,10 +92,10 @@ public class Canon extends Piece {
                 for (int j = fuseCordX - 1; j >= 0; j--) {
                     Point point = new Point(j, fuseCordY);
                     if (!Board.getInstance().isEmptyPosition(point)) {
-                        if (isOpponentPiece(point)) {
+                        if (board.isOpponentPiece(this, point)) {
                             result.add(point);
                             break;
-                        } else if (!isOpponentPiece(point))
+                        } else if (!board.isOpponentPiece(this, point))
                             break;
                     }
                 }

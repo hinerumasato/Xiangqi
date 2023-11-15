@@ -213,6 +213,13 @@ public class Board {
         return getPieceByPoint(point) == null;
     }
 
+    public boolean isOpponentPiece(Piece piece, Point point) {
+        Piece opponentPiece = getPieceByPoint(point);
+        if(opponentPiece == null)
+            return false;
+        return !piece.getColor().equals(opponentPiece.getColor());
+    }
+
     public void removePiece(Piece piece) {
         if(pieces.contains(piece))
             pieces.remove(piece);
