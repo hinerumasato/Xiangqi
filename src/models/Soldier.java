@@ -49,8 +49,6 @@ public class Soldier extends Piece {
                     result.add(bottom);
                 } else if (isOpponentPiece(bottom)) {
                     result.add(bottom);
-                } else {
-                    result.add(now);
                 }
             }
 
@@ -60,8 +58,6 @@ public class Soldier extends Piece {
                     result.add(right);
                 } else if (isOpponentPiece(right)) {
                     result.add(right);
-                } else {
-                    result.add(now);
                 }
             } else {
                 // result.add(now);
@@ -73,8 +69,6 @@ public class Soldier extends Piece {
                     result.add(left);
                 } else if (isOpponentPiece(left)) {
                     result.add(left);
-                } else {
-                    result.add(now);
                 }
             } else {
                 // result.add(now);
@@ -89,8 +83,6 @@ public class Soldier extends Piece {
             } else {
                 if (board.isEmptyPosition(bottom)) {
                     result.add(bottom);
-                } else {
-                    result.add(now);
                 }
             }
         }
