@@ -8,12 +8,22 @@ public abstract class Piece {
     protected int code;
     protected String strCode;
 
-    protected boolean isOverLake(Point point) {
+    public boolean isOverLake(Point point) {
         int x = point.getX();
         if (getColor().equals(Color.RED)) {
             return x > 0 && x <= 4;
         } else
             return x >= 5 && x <= 9;
+    }
+
+    public boolean isInArch() {
+        int x = point.getX();
+        int y = point.getY();
+        if(getColor().equals(Color.BLACK)) {
+            return y >= 3 && y <= 5 && x >= 0 && x <= 2;
+        } else {
+            return y >= 3 && y <= 5 && x >= 7 && x <= 9;
+        }
     }
 
     public Piece(Color color) {
@@ -84,13 +94,6 @@ public abstract class Piece {
         if(piece == null)
             return false;
         return piece.getColor().equals(Color.BLACK);
-    }
-
-    public boolean isOpponentPiece(Point point) {
-        Piece opponentPiece = Board.getInstance().getPieceByPoint(point);
-        if(opponentPiece == null)
-            return false;
-        return !this.getColor().equals(opponentPiece.getColor());
     }
 
 }

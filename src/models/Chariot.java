@@ -25,7 +25,7 @@ public class Chariot extends Piece {
             Point p = new Point(x, i);
             if (board.isEmptyPosition(p))
                 result.add(p);
-            else if (isOpponentPiece(p)) {
+            else if (board.isOpponentPiece(this, p)) {
                 result.add(p);
                 break;
             } else
@@ -36,7 +36,7 @@ public class Chariot extends Piece {
             Point p = new Point(x, i);
             if (board.isEmptyPosition(p))
                 result.add(p);
-            else if (isOpponentPiece(p)) {
+            else if (board.isOpponentPiece(this, p)) {
                 result.add(p);
                 break;
             } else
@@ -47,7 +47,7 @@ public class Chariot extends Piece {
             Point p = new Point(i, y);
             if (board.isEmptyPosition(p))
                 result.add(p);
-            else if (isOpponentPiece(p)) {
+            else if (board.isOpponentPiece(this, p)) {
                 result.add(p);
                 break;
             } else
@@ -58,7 +58,7 @@ public class Chariot extends Piece {
             Point p = new Point(i, y);
             if (board.isEmptyPosition(p))
                 result.add(p);
-            else if (isOpponentPiece(p)) {
+            else if (board.isOpponentPiece(this, p)) {
                 result.add(p);
                 break;
             } else
