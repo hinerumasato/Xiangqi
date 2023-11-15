@@ -212,4 +212,9 @@ public class Board {
     public boolean isEmptyPosition(Point point) {
         return getPieceByPoint(point) == null;
     }
+
+    public void removePiece(Piece piece) {
+        if(pieces.contains(piece))
+            pieces.remove(piece);
+    }
 }

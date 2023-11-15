@@ -49,10 +49,19 @@ public abstract class Piece {
         return possibleMoves.contains(point);
     }
     public abstract List<Point> getAllPossibleMoves();
-    public void move(Point point) {
-        if(canMove(point))
+    
+    public boolean move(Point point) {
+        boolean result;
+        Board board = Board.getInstance();
+        if(result = canMove(point)) {
+            Piece opponentPiece = board.getPieceByPoint(point);
+            if(opponentPiece != null) {
+                board.removePiece(opponentPiece);
+            }
             this.setPoint(point);
-        Board.getInstance().initBoard();
+        }
+        board.initBoard();
+        return result;
     }
 
     public boolean isRedPiece(Point point) {
