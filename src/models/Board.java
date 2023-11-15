@@ -217,4 +217,18 @@ public class Board {
         if(pieces.contains(piece))
             pieces.remove(piece);
     }
+
+    public boolean isInArch(Piece piece) {
+        return piece.isInArch();
+    }
+
+    public boolean isInArch(Color color, Point point) {
+        int x = point.getX();
+        int y = point.getY();
+        if(color.equals(Color.BLACK)) {
+            return y >= 3 && y <= 5 && x >= 0 && x <= 2;
+        } else {
+            return y >= 3 && y <= 5 && x >= 7 && x <= 9;
+        }
+    }
 }

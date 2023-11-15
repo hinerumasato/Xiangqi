@@ -13,8 +13,6 @@ public class Soldier extends Piece {
         this.strCode = "B";
     }
 
-   
-
     @Override
     public List<Point> getAllPossibleMoves() {
         List<Point> result = new ArrayList<Point>();
