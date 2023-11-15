@@ -13,13 +13,7 @@ public class Soldier extends Piece {
         this.strCode = "B";
     }
 
-   private boolean isOverLake(Point point) {
-        int x = point.getX();
-        if (getColor().equals(Color.RED)) {
-            return x > 0 && x <= 4;
-        } else
-            return x >= 5 && x <= 9;
-    }
+   
 
     @Override
     public List<Point> getAllPossibleMoves() {

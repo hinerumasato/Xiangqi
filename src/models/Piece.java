@@ -8,6 +8,14 @@ public abstract class Piece {
     protected int code;
     protected String strCode;
 
+    protected boolean isOverLake(Point point) {
+        int x = point.getX();
+        if (getColor().equals(Color.RED)) {
+            return x > 0 && x <= 4;
+        } else
+            return x >= 5 && x <= 9;
+    }
+
     public Piece(Color color) {
         this.color = color;
     }
@@ -49,7 +57,7 @@ public abstract class Piece {
         return possibleMoves.contains(point);
     }
     public abstract List<Point> getAllPossibleMoves();
-    
+
     public boolean move(Point point) {
         boolean result;
         Board board = Board.getInstance();
