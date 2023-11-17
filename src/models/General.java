@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class General extends Piece {
@@ -12,16 +14,29 @@ public class General extends Piece {
         this.strCode = "T";
     }
 
-    @Override
-    public boolean canMove(Point point) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canMove'");
+   private List<Point> isValidPoints(List<Point> points) {
+        Board board = Board.getInstance();
+        List<Point> result = new ArrayList<Point>();
+        for (Point point : points) {
+            if(board.isInArch(getColor(), point) && (board.isEmptyPosition(point) || board.isOpponentPiece(this, point)))
+                result.add(point);
+        }
+        return result;
     }
+
 
     @Override
     public List<Point> getAllPossibleMoves() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPossibleMoves'");
+        int x = point.getX();
+        int y = point.getY();
+
+        Point top = new Point(x + 1, y);
+        Point bottom = new Point(x -1 , y);
+        Point left = new Point(x, y - 1);
+        Point right = new Point(x, y + 1);
+
+        return isValidPoints(new ArrayList<Point>(Arrays.asList(top, bottom, left, right)));
+
     }
     
 }
