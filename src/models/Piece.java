@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Piece {
     protected Color color;
@@ -63,15 +64,42 @@ public abstract class Piece {
     }
 
     public boolean canMove(Point point) {
-        List<Point> possibleMoves = getAllPossibleMoves();
+        List<Point> possibleMoves = filterPossibleMoves();
         return possibleMoves.contains(point);
     }
+
+    public boolean isCheckmateAfterMove(Point point) {
+        Board board = Board.getInstance();
+        Point originPoint = getPoint();
+        tryMove(point);
+        if(board.isCheckmate(getColor())) {
+            tryMove(originPoint);
+            return true;
+        } else {
+            tryMove(originPoint);
+            return false;
+        }
+    }
+
+    public void tryMove(Point point) {
+        Board board = Board.getInstance();
+        setPoint(point);
+        board.initBoard();
+    }
+
     public abstract List<Point> getAllPossibleMoves();
+    public List<Point> filterPossibleMoves() {
+        List<Point> possibleMoves = getAllPossibleMoves();
+        List<Point> result = possibleMoves.stream()
+            .filter(point -> !isCheckmateAfterMove(point))
+            .collect(Collectors.toList());
+        return result;
+    }
 
     public boolean move(Point point) {
-        boolean result;
+        boolean canMove;
         Board board = Board.getInstance();
-        if(result = canMove(point)) {
+        if(canMove = canMove(point)) {
             Piece opponentPiece = board.getPieceByPoint(point);
             if(opponentPiece != null) {
                 board.removePiece(opponentPiece);
@@ -79,7 +107,7 @@ public abstract class Piece {
             this.setPoint(point);
         }
         board.initBoard();
-        return result;
+        return canMove;
     }
 
     public boolean isRedPiece(Point point) {

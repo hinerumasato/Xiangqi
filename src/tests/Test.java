@@ -34,6 +34,11 @@ public class Test {
         System.out.println(elephant.getAllPossibleMoves());
     }
 
+    public static void testIsCheckmateAfterMove() {
+        Piece redCannon = board.getPieceByPoint(new Point(7, 7));
+        redCannon.setPoint(new Point(3, 8));
+    }
+
     public static void main(String[] args) {
         testElephant();
     }

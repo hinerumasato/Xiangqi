@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 import controllers.BoardComponentController;
 import models.Advisor;
@@ -120,10 +121,10 @@ public class BoardComponent extends JComponent {
 
     }
 
-    private void drawHighLight(Graphics g, Piece pieceModel) {
-        if (pieceModel != null) {
+    private void drawHighLight(Graphics g, Piece selectedPiece) {
+        if (selectedPiece != null) {
             try {
-                List<Point> posiblePoints = pieceModel.getAllPossibleMoves();
+                List<Point> posiblePoints = selectedPiece.filterPossibleMoves();
                 File file = new File(HIGHLIGHT_BLUE_PATH);
                 BufferedImage image = ImageIO.read(file);
 
@@ -199,6 +200,10 @@ public class BoardComponent extends JComponent {
 
     public Piece getSelectedPiece() {
         return selectedPiece;
+    }
+
+    public void notifyMessage(String message) {
+        JOptionPane.showMessageDialog(null, message, "Thông báo", JOptionPane.OK_OPTION);
     }
     
 }

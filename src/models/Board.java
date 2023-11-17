@@ -1,7 +1,11 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import Constants.Constants;
 
 public class Board {
 
@@ -9,13 +13,15 @@ public class Board {
     public static final int BOARD_ROWS = 10;
     public static final int BOARD_COLS = 9;
 
-    public int[][] board;
-    public List<Piece> pieces;
-    public static Board instance = null;
+    private int[][] board;
+    private List<Piece> pieces;
+    private Map<String, Piece> pieceMap;
+    private static Board instance = null;
 
     private Board() {
         board = new int[BOARD_ROWS][BOARD_COLS];
         pieces = new ArrayList<Piece>();
+        pieceMap = new HashMap<String, Piece>();
 
         initBlackPiecePosition();
         initRedPiecePosition();
@@ -95,6 +101,8 @@ public class Board {
         pieces.add(soldier3);
         pieces.add(soldier4);
         pieces.add(soldier5);
+
+        pieceMap.put(Constants.BLACK_GENERAL, general);
     }
 
     public void initRedPiecePosition() {
@@ -161,6 +169,7 @@ public class Board {
         pieces.add(soldier4);
         pieces.add(soldier5);
 
+        pieceMap.put(Constants.RED_GENERAL, general);
     }
 
     public void initBoard() {
@@ -239,13 +248,38 @@ public class Board {
         }
     }
 
-    public boolean isCheckmate() {
-        // TODO Auto-generated method stub
+    public Map<String, Piece> getPieceMap() {
+        return pieceMap;
+    }
+
+    public boolean isCheckmate(Color color) {
+        Piece general;
+        if(color.equals(Color.RED))
+            general = pieceMap.get(Constants.RED_GENERAL);
+        else general = pieceMap.get(Constants.BLACK_GENERAL);
+
+        Point generalPoint = general.getPoint();
+
+        for (Piece piece : pieces) {
+            if(piece.getAllPossibleMoves().contains(generalPoint))
+                return true;
+        }
+
         return false;
     }
 
-    public boolean isOver() {
-        // TODO Auto-generated method stub
-        return false;
+    public List<Point> getAllPossibleMovesByColor(Color color) {
+        List<Point> result = new ArrayList<>();
+        for(Piece piece : pieces) {
+            if(piece.getColor().equals(color))
+                result.addAll(piece.filterPossibleMoves());
+        }
+
+        return result;
+    }
+
+
+    public boolean isOver(Color color) {
+        return getAllPossibleMovesByColor(color).isEmpty();
     }
 }
