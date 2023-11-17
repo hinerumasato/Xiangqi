@@ -68,15 +68,28 @@ public abstract class Piece {
         return possibleMoves.contains(point);
     }
 
+    private void resetPiece(Piece piece, Point point) {
+        Board board = Board.getInstance();
+        if(piece != null) {
+            piece.setPoint(point);
+            board.initBoard();
+        }
+    }
+
     public boolean isCheckmateAfterMove(Point point) {
         Board board = Board.getInstance();
         Point originPoint = getPoint();
+        Piece opponentPiece = board.getPieceByPoint(point);
+        if(opponentPiece != null)
+            opponentPiece.setPoint(originPoint);
         tryMove(point);
         if(board.isCheckmate(getColor())) {
             tryMove(originPoint);
+            resetPiece(opponentPiece, point);
             return true;
         } else {
             tryMove(originPoint);
+            resetPiece(opponentPiece, point);
             return false;
         }
     }
@@ -84,6 +97,7 @@ public abstract class Piece {
     public void tryMove(Point point) {
         Board board = Board.getInstance();
         setPoint(point);
+        
         board.initBoard();
     }
 

@@ -28,6 +28,17 @@ public class Board {
         initBoard();
     }
 
+    public Board(List<Piece> pieces) {
+        board = new int[BOARD_ROWS][BOARD_COLS];
+        this.pieces = new ArrayList<Piece>();
+        for (Piece piece : pieces) {
+            // TO-DO
+        }
+        pieceMap = new HashMap<String, Piece>();
+
+        initBoard();
+    }
+
     public static Board getInstance() {
         if(instance == null)
             instance = new Board();
