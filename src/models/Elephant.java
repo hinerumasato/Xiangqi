@@ -38,7 +38,7 @@ public class Elephant extends Piece {
         }
 
             // check left top
-            if (((x - 2) >= (board.BOARD_ROWS / 2) || (x+2) <= board.BOARD_ROWS / 2)
+            if (((x - 2) >= (Board.BOARD_ROWS / 2) || (x+2) <= Board.BOARD_ROWS / 2)
                     && (y - 2) >= 0) {
                 // elephantLeftTop = new Point(x - 2, y - 2);
                 if (board.isEmptyPosition(elephantLeftTop) || board.isOpponentPiece(this, elephantLeftTop)) {
@@ -47,8 +47,8 @@ public class Elephant extends Piece {
             }
 
             // check right top
-            if (((x - 2) >= (board.BOARD_ROWS / 2) || (x+2) <= board.BOARD_ROWS / 2)
-                    && (y + 2) < board.BOARD_COLS) {
+            if (((x - 2) >= (Board.BOARD_ROWS / 2) || (x+2) <= Board.BOARD_ROWS / 2)
+                    && (y + 2) < Board.BOARD_COLS) {
                 // elephantRightTop = new Point(x - 2, y + 2);
                 if (board.isEmptyPosition(elephantRightTop) || board.isOpponentPiece(this, elephantRightTop)) {
                     result.add(elephantRightTop);
@@ -56,7 +56,7 @@ public class Elephant extends Piece {
             }
 
             // check bottom left
-            if (((x + 2) < board.BOARD_ROWS || (x-2) >=0) 
+            if (((x + 2) < Board.BOARD_ROWS || (x-2) >=0) 
                     && (y - 2) >= 0) {
                 // elephantLeftBottom = new Point(x + 2, y - 2);
                 if (board.isEmptyPosition(elephantLeftBottom) || board.isOpponentPiece(this, elephantLeftBottom)) {
@@ -65,8 +65,8 @@ public class Elephant extends Piece {
             }
 
             // check bottom right
-            if (((x + 2) < board.BOARD_ROWS || (x-2) >= 0) 
-                    && (y + 2) < board.BOARD_COLS) {
+            if (((x + 2) < Board.BOARD_ROWS || (x-2) >= 0) 
+                    && (y + 2) < Board.BOARD_COLS) {
                 // elephantRightBottom = new Point(x + 2, y + 2);
                 if (board.isEmptyPosition(elephantRightBottom)
                         || board.isOpponentPiece(this, elephantRightBottom)) {
