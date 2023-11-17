@@ -238,4 +238,14 @@ public class Board {
             return y >= 3 && y <= 5 && x >= 7 && x <= 9;
         }
     }
+
+    public boolean isCheckmate() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    public boolean isOver() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
