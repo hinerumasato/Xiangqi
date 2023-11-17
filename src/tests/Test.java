@@ -29,7 +29,12 @@ public class Test {
         System.out.println(board.isInArch(general));
     }
 
+    public static void testElephant(){
+        Piece elephant = board.getPieces().get(4);
+        System.out.println(elephant.getAllPossibleMoves());
+    }
+
     public static void main(String[] args) {
-        testAdvisor();
+        testElephant();
     }
 }
