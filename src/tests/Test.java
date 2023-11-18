@@ -41,5 +41,8 @@ public class Test {
 
     public static void main(String[] args) {
         testElephant();
+        Board board = Board.getInstance();
+        System.out.println(Board.BOARD_COLS);
+        System.out.println(Board.BOARD_ROWS / 2);
     }
 }
