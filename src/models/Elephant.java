@@ -25,11 +25,18 @@ public class Elephant extends Piece {
         Point elephantLeftBottom;
         Point elephantRightBottom;
 
+        Point elephantLeftTop1;
+        Point elephantRightTop1;
+        Point elephantLeftBottom1;
+        Point elephantRightBottom1;
+
         if (this.getColor().equals(Color.RED)) {
             // check left top
             if (x - 2 >= board.BOARD_ROWS / 2 && y - 2 >= 0) {
                 elephantLeftTop = new Point(x - 2, y - 2);
-                if (board.isEmptyPosition(elephantLeftTop) || board.isOpponentPiece(this, elephantLeftTop)) {
+                elephantLeftTop1 = new Point(x - 1, y - 1);
+                if ((board.isEmptyPosition(elephantLeftTop) && board.isEmptyPosition(elephantLeftTop1))
+                        || board.isOpponentPiece(this, elephantLeftTop)) {
                     result.add(elephantLeftTop);
                 }
             }
@@ -37,23 +44,29 @@ public class Elephant extends Piece {
             // check right top
             if (x - 2 >= board.BOARD_ROWS / 2 && y + 2 < board.BOARD_COLS) {
                 elephantRightTop = new Point(x - 2, y + 2);
-                if (board.isEmptyPosition(elephantRightTop) || board.isOpponentPiece(this, elephantRightTop)) {
+                elephantRightTop1 = new Point(x - 1, y + 1);
+                if ((board.isEmptyPosition(elephantRightTop) && board.isEmptyPosition(elephantRightTop1))
+                        || board.isOpponentPiece(this, elephantRightTop)) {
                     result.add(elephantRightTop);
                 }
             }
 
-            //check left bottom
-            if(x + 2 < board.BOARD_ROWS && y -2 >=0){
-                elephantLeftBottom = new Point(x+2 , y -2);
-                if(board.isEmptyPosition(elephantLeftBottom) || board.isOpponentPiece(this, elephantLeftBottom)){
+            // check left bottom
+            if (x + 2 < board.BOARD_ROWS && y - 2 >= 0) {
+                elephantLeftBottom = new Point(x + 2, y - 2);
+                elephantLeftBottom1 = new Point(x + 1, y - 1);
+                if ((board.isEmptyPosition(elephantLeftBottom) && board.isEmptyPosition(elephantLeftBottom1))
+                        || board.isOpponentPiece(this, elephantLeftBottom)) {
                     result.add(elephantLeftBottom);
                 }
             }
 
-            //check right bottom
-            if(x+2 < board.BOARD_ROWS && y + 2 < board.BOARD_COLS){
-                elephantRightBottom = new Point(x+2, y+2);
-                if(board.isEmptyPosition(elephantRightBottom) || board.isOpponentPiece(this, elephantRightBottom)){
+            // check right bottom
+            if (x + 2 < board.BOARD_ROWS && y + 2 < board.BOARD_COLS) {
+                elephantRightBottom = new Point(x + 2, y + 2);
+                elephantRightBottom1 = new Point(x + 1, y + 1);
+                if ((board.isEmptyPosition(elephantRightBottom) && board.isEmptyPosition(elephantRightBottom1))
+                        || board.isOpponentPiece(this, elephantRightBottom)) {
                     result.add(elephantRightBottom);
                 }
             }
@@ -61,7 +74,9 @@ public class Elephant extends Piece {
             // check left top
             if (x + 2 <= board.BOARD_ROWS / 2 && y - 2 >= 0) {
                 elephantLeftTop = new Point(x + 2, y - 2);
-                if (board.isEmptyPosition(elephantLeftTop) || board.isOpponentPiece(this, elephantLeftTop)) {
+                elephantLeftTop1 = new Point(x + 1, y - 1);
+                if ((board.isEmptyPosition(elephantLeftTop) && board.isEmptyPosition(elephantLeftTop1))
+                        || board.isOpponentPiece(this, elephantLeftTop)) {
                     result.add(elephantLeftTop);
                 }
             }
@@ -69,23 +84,29 @@ public class Elephant extends Piece {
             // check right top
             if (x + 2 <= board.BOARD_ROWS / 2 && y + 2 < board.BOARD_COLS) {
                 elephantRightTop = new Point(x + 2, y + 2);
-                if (board.isEmptyPosition(elephantRightTop) || board.isOpponentPiece(this, elephantRightTop)) {
+                elephantRightTop1 = new Point(x + 1, y + 1);
+                if ((board.isEmptyPosition(elephantRightTop) && board.isEmptyPosition(elephantRightTop1))
+                        || board.isOpponentPiece(this, elephantRightTop)) {
                     result.add(elephantRightTop);
                 }
             }
 
-            //check left bottom
-            if(x -2 >= 0 && y -2 >=0){
-                elephantLeftBottom = new Point(x -2, y-2);
-                if(board.isEmptyPosition(elephantLeftBottom) || board.isOpponentPiece(this, elephantLeftBottom)){
+            // check left bottom
+            if (x - 2 >= 0 && y - 2 >= 0) {
+                elephantLeftBottom = new Point(x - 2, y - 2);
+                elephantLeftBottom1 = new Point(x - 1, y - 1);
+                if ((board.isEmptyPosition(elephantLeftBottom) && board.isEmptyPosition(elephantLeftBottom1))
+                        || board.isOpponentPiece(this, elephantLeftBottom)) {
                     result.add(elephantLeftBottom);
                 }
             }
 
-            //check right bottom
-            if(x-2 >= 0 && y + 2 < board.BOARD_COLS){
-                elephantRightBottom = new Point(x -2, y +2);
-                if(board.isEmptyPosition(elephantRightBottom) || board.isOpponentPiece(this, elephantRightBottom)){
+            // check right bottom
+            if (x - 2 >= 0 && y + 2 < board.BOARD_COLS) {
+                elephantRightBottom = new Point(x - 2, y + 2);
+                elephantRightBottom1 = new Point(-1, y + 1);
+                if ((board.isEmptyPosition(elephantRightBottom) && board.isEmptyPosition(elephantRightBottom1))
+                        || board.isOpponentPiece(this, elephantRightBottom)) {
                     result.add(elephantRightBottom);
                 }
             }
