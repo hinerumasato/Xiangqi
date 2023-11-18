@@ -50,7 +50,15 @@ public class Test {
         redCannon.setPoint(new Point(3, 8));
     }
 
+<<<<<<< HEAD
     public static void main(String[] args) throws Exception {
         testCloneBoard();
+=======
+    public static void main(String[] args) {
+        testElephant();
+        Board board = Board.getInstance();
+        System.out.println(Board.BOARD_COLS);
+        System.out.println(Board.BOARD_ROWS / 2);
+>>>>>>> 7a8068a7ce064351f3c796a5be23f407bc9d6ab2
     }
 }
