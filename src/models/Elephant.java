@@ -40,7 +40,7 @@ public class Elephant extends Piece {
 
         if (this.getColor().equals(Color.RED)) {
             // check left top
-            if (x - 2 >= board.BOARD_ROWS / 2 && y - 2 >= 0) {
+            if (x - 2 >= Board.BOARD_ROWS / 2 && y - 2 >= 0) {
                 elephantLeftTop = new Point(x - 2, y - 2);
                 elephantLeftTop1 = new Point(x - 1, y - 1);
                 if ((board.isEmptyPosition(elephantLeftTop) && board.isEmptyPosition(elephantLeftTop1))
@@ -50,7 +50,7 @@ public class Elephant extends Piece {
             }
 
             // check right top
-            if (x - 2 >= board.BOARD_ROWS / 2 && y + 2 < board.BOARD_COLS) {
+            if (x - 2 >= Board.BOARD_ROWS / 2 && y + 2 < Board.BOARD_COLS) {
                 elephantRightTop = new Point(x - 2, y + 2);
                 elephantRightTop1 = new Point(x - 1, y + 1);
                 if ((board.isEmptyPosition(elephantRightTop) && board.isEmptyPosition(elephantRightTop1))
@@ -60,7 +60,7 @@ public class Elephant extends Piece {
             }
 
             // check left bottom
-            if (x + 2 < board.BOARD_ROWS && y - 2 >= 0) {
+            if (x + 2 < Board.BOARD_ROWS && y - 2 >= 0) {
                 elephantLeftBottom = new Point(x + 2, y - 2);
                 elephantLeftBottom1 = new Point(x + 1, y - 1);
                 if ((board.isEmptyPosition(elephantLeftBottom) && board.isEmptyPosition(elephantLeftBottom1))
@@ -70,7 +70,7 @@ public class Elephant extends Piece {
             }
 
             // check right bottom
-            if (x + 2 < board.BOARD_ROWS && y + 2 < board.BOARD_COLS) {
+            if (x + 2 < Board.BOARD_ROWS && y + 2 < Board.BOARD_COLS) {
                 elephantRightBottom = new Point(x + 2, y + 2);
                 elephantRightBottom1 = new Point(x + 1, y + 1);
                 if ((board.isEmptyPosition(elephantRightBottom) && board.isEmptyPosition(elephantRightBottom1))
@@ -80,7 +80,7 @@ public class Elephant extends Piece {
             }
         } else {
             // check left top
-            if (x + 2 <= board.BOARD_ROWS / 2 && y - 2 >= 0) {
+            if (x + 2 <= Board.BOARD_ROWS / 2 && y - 2 >= 0) {
                 elephantLeftTop = new Point(x + 2, y - 2);
                 elephantLeftTop1 = new Point(x + 1, y - 1);
                 if ((board.isEmptyPosition(elephantLeftTop) && board.isEmptyPosition(elephantLeftTop1))
@@ -90,7 +90,7 @@ public class Elephant extends Piece {
             }
 
             // check right top
-            if (x + 2 <= board.BOARD_ROWS / 2 && y + 2 < board.BOARD_COLS) {
+            if (x + 2 <= Board.BOARD_ROWS / 2 && y + 2 < Board.BOARD_COLS) {
                 elephantRightTop = new Point(x + 2, y + 2);
                 elephantRightTop1 = new Point(x + 1, y + 1);
                 if ((board.isEmptyPosition(elephantRightTop) && board.isEmptyPosition(elephantRightTop1))
@@ -110,7 +110,7 @@ public class Elephant extends Piece {
             }
 
             // check right bottom
-            if (x - 2 >= 0 && y + 2 < board.BOARD_COLS) {
+            if (x - 2 >= 0 && y + 2 < Board.BOARD_COLS) {
                 elephantRightBottom = new Point(x - 2, y + 2);
                 elephantRightBottom1 = new Point(-1, y + 1);
                 if ((board.isEmptyPosition(elephantRightBottom) && board.isEmptyPosition(elephantRightBottom1))

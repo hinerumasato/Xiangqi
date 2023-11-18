@@ -3,7 +3,7 @@ package controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import Constants.Constants;
+import constants.Constants;
 import models.Board;
 import models.Color;
 import models.Piece;

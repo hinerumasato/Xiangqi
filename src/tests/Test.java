@@ -1,5 +1,6 @@
 package tests;
 
+import constants.Constants;
 import models.Board;
 import models.Piece;
 import models.Point;
@@ -15,8 +16,11 @@ public class Test {
         System.out.println(board);
         System.out.println(newBoard);
         System.out.println("----------------- Hashmap piece Address Location ------------------");
-        System.out.println(board.getPieces());
-        System.out.println(newBoard.getPieces());
+        System.out.println(board.getPieceMap());
+        System.out.println(newBoard.getPieceMap());
+        System.out.println("----------------- Test Point Address Location ----------------");
+        System.out.println(board.getPieceMap().get(Constants.RED_GENERAL).getPoint());
+        System.out.println(newBoard.getPieceMap().get(Constants.RED_GENERAL).getPoint());
     }
 
     public static void testAdvisor() {
@@ -52,8 +56,5 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         testCloneBoard();
-        Board board = Board.getInstance();
-        System.out.println(Board.BOARD_COLS);
-        System.out.println(Board.BOARD_ROWS / 2);
     }
 }
