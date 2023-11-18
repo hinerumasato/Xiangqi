@@ -13,6 +13,14 @@ public class Horse extends Piece {
         this.strCode = "M";
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Horse newInstance = new Horse(this.color);
+        Point p = this.getPoint();
+        newInstance.setPoint(new Point(p.getX(), p.getY()));
+        return newInstance;
+    }
+
     private boolean isValidTop(Point p) {
         Board board = Board.getInstance();
         return p.getX() >= 0 && board.isEmptyPosition(p);

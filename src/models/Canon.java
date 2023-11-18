@@ -14,12 +14,20 @@ public class Canon extends Piece {
     }
 
     @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Canon newInstance = new Canon(this.color);
+        Point p = this.getPoint();
+        newInstance.setPoint(new Point(p.getX(), p.getY()));
+        return newInstance;
+    }
+
+    @Override
     public List<Point> getAllPossibleMoves() {
         List<Point> result = new ArrayList<Point>();
         int x = this.getPoint().getX();
         int y = this.getPoint().getY();
         Board board = Board.getInstance();
-        int[][] matrix = board.getBoard();
+        int[][] matrix = board.getMatrix();
         // check y for right
         for (int i = y + 1; i < Board.BOARD_COLS; i++) {
             if (Board.getInstance().isEmptyPosition(new Point(x, i)))

@@ -14,6 +14,14 @@ public class Elephant extends Piece {
     }
 
     @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Elephant newInstance = new Elephant(this.color);
+        Point p = this.getPoint();
+        newInstance.setPoint(new Point(p.getX(), p.getY()));
+        return newInstance;
+    }
+
+    @Override
     public List<Point> getAllPossibleMoves() {
         List<Point> result = new ArrayList<Point>();
         // int x = this.getPoint().getX();

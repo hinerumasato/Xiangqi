@@ -7,19 +7,18 @@ import java.util.Map;
 
 import Constants.Constants;
 
-public class Board {
-
+public class Board implements Cloneable {
 
     public static final int BOARD_ROWS = 10;
     public static final int BOARD_COLS = 9;
 
-    private int[][] board;
+    private int[][] matrix;
     private List<Piece> pieces;
     private Map<String, Piece> pieceMap;
     private static Board instance = null;
 
     private Board() {
-        board = new int[BOARD_ROWS][BOARD_COLS];
+        matrix = new int[BOARD_ROWS][BOARD_COLS];
         pieces = new ArrayList<Piece>();
         pieceMap = new HashMap<String, Piece>();
 
@@ -29,14 +28,35 @@ public class Board {
     }
 
     public Board(List<Piece> pieces) {
-        board = new int[BOARD_ROWS][BOARD_COLS];
-        this.pieces = new ArrayList<Piece>();
-        for (Piece piece : pieces) {
-            // TO-DO
-        }
-        pieceMap = new HashMap<String, Piece>();
+        try {
 
-        initBoard();
+            this.matrix = new int[BOARD_ROWS][BOARD_COLS];
+            this.pieces = new ArrayList<Piece>();
+            for (Piece piece : pieces) {
+                this.pieces.add((Piece) piece.clone());
+            }
+            this.pieceMap = new HashMap<String, Piece>();
+            this.pieceMap.put(Constants.RED_GENERAL, getGeneral(Color.RED, this.pieces));
+            this.pieceMap.put(Constants.BLACK_GENERAL, getGeneral(Color.BLACK, this.pieces));
+            initBoard();
+        }
+        catch(CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Piece getGeneral(Color color, List<Piece> pieces) {
+        for (Piece piece : pieces) {
+            if(piece.getColor().equals(color) && piece.getStrCode().equals(Constants.GENERAL_STR_CODE))
+                return piece;
+        }
+        return null;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Board newInstance = new Board(pieces);
+        return newInstance;
     }
 
     public static Board getInstance() {
@@ -187,31 +207,31 @@ public class Board {
 
         for(int i = 0; i < BOARD_ROWS; i++)
             for(int j = 0; j < BOARD_COLS; j++)
-                board[i][j] = 0;
+                matrix[i][j] = 0;
 
         for (Piece piece : pieces) {
             int row = piece.getPoint().getX();
             int col = piece.getPoint().getY();
 
-            board[row][col] = piece.getCode();
+            matrix[row][col] = piece.getCode();
         }
     }
 
     public void printBoard() {
         for (int i = 0; i < BOARD_ROWS; i++) {
             for (int j = 0; j < BOARD_COLS; j++) {
-                System.out.print(board[i][j] + " ");
+                System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    public int[][] getBoard() {
-        return board;
+    public int[][] getMatrix() {
+        return matrix;
     }
 
-    public void setBoard(int[][] board) {
-        this.board = board;
+    public void setMatrix(int[][] matrix) {
+        this.matrix = matrix;
     }
 
     public List<Piece> getPieces() {

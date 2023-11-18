@@ -13,6 +13,14 @@ public class Chariot extends Piece {
         this.strCode = "X";
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Chariot newInstance = new Chariot(this.color);
+        Point p = this.getPoint();
+        newInstance.setPoint(new Point(p.getX(), p.getY()));
+        return newInstance;
+    }
+
 
     @Override
     public List<Point> getAllPossibleMoves() {

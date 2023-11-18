@@ -14,6 +14,14 @@ public class Soldier extends Piece {
     }
 
     @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Soldier newInstance = new Soldier(this.color);
+        Point p = this.getPoint();
+        newInstance.setPoint(new Point(p.getX(), p.getY()));
+        return newInstance;
+    }
+
+    @Override
     public List<Point> getAllPossibleMoves() {
         List<Point> result = new ArrayList<Point>();
         Board board = Board.getInstance();

@@ -8,6 +8,17 @@ public class Test {
 
     static Board board = Board.getInstance();
 
+    public static void testCloneBoard() throws CloneNotSupportedException {
+        Board newBoard = (Board) board.clone();
+
+        System.out.println("----------------- Board Address Location ---------------------");
+        System.out.println(board);
+        System.out.println(newBoard);
+        System.out.println("----------------- List piece Address Location ------------------");
+        System.out.println(board.getPieces());
+        System.out.println(newBoard.getPieces());
+    }
+
     public static void testAdvisor() {
         Piece redAdvisor = board.getPieceByPoint(new Point(9, 3));
         System.out.println(redAdvisor.getAllPossibleMoves());
@@ -39,7 +50,7 @@ public class Test {
         redCannon.setPoint(new Point(3, 8));
     }
 
-    public static void main(String[] args) {
-        testElephant();
+    public static void main(String[] args) throws Exception {
+        testCloneBoard();
     }
 }

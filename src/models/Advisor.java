@@ -14,6 +14,14 @@ public class Advisor extends Piece {
         this.strCode = "S";
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Advisor newInstance = new Advisor(this.color);
+        Point p = this.getPoint();
+        newInstance.setPoint(new Point(p.getX(), p.getY()));
+        return newInstance;
+    }
+
     private List<Point> isValidPoints(List<Point> points) {
         Board board = Board.getInstance();
         List<Point> result = new ArrayList<Point>();

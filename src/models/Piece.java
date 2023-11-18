@@ -3,11 +3,14 @@ package models;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Piece {
+public abstract class Piece implements Cloneable {
     protected Color color;
     protected Point point;
     protected int code;
     protected String strCode;
+
+    @Override
+    protected abstract Object clone() throws CloneNotSupportedException;
 
     public boolean isOverLake(Point point) {
         int x = point.getX();
