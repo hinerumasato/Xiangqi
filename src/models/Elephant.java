@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
+
 public class Elephant extends Piece {
 
     public Elephant(Color color) {
@@ -10,7 +12,7 @@ public class Elephant extends Piece {
         this.code = 4;
         if (color.equals(Color.BLACK))
             this.code *= -1;
-        this.strCode = "V";
+        this.strCode = Constants.ELEPHANT_STR_CODE;
     }
 
     @Override

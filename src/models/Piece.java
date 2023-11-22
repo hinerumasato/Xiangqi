@@ -84,7 +84,7 @@ public abstract class Piece implements Cloneable {
         Point originPoint = getPoint();
         Piece opponentPiece = board.getPieceByPoint(point);
         if(opponentPiece != null)
-            opponentPiece.setPoint(originPoint);
+            opponentPiece.setPoint(new Point(-1, -1));
         tryMove(point);
         if(board.isCheckmate(getColor())) {
             tryMove(originPoint);

@@ -36,14 +36,13 @@ public class Point {
             return true;
         if (obj == null)
             return false;
-        if (getClass()!= obj.getClass())
+        if (getClass() != obj.getClass())
             return false;
         Point other = (Point) obj;
-        if (x!= other.x)
+        if (x != other.x)
             return false;
-        if (y!= other.y)
+        if (y != other.y)
             return false;
         return true;
     }
-
 }

@@ -213,7 +213,8 @@ public class Board implements Cloneable {
             int row = piece.getPoint().getX();
             int col = piece.getPoint().getY();
 
-            matrix[row][col] = piece.getCode();
+            if(row >= 0 && row < BOARD_ROWS && col >= 0 && col < BOARD_COLS)
+                matrix[row][col] = piece.getCode();
         }
     }
 

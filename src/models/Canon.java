@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
+
 public class Canon extends Piece {
 
     public Canon(Color color) {
@@ -10,7 +12,7 @@ public class Canon extends Piece {
         this.code = 2;
         if (color.equals(Color.BLACK))
             this.code *= -1;
-        this.strCode = "P";
+        this.strCode = Constants.CANNON_STR_CODE;
     }
 
     @Override
@@ -27,7 +29,6 @@ public class Canon extends Piece {
         int x = this.getPoint().getX();
         int y = this.getPoint().getY();
         Board board = Board.getInstance();
-        int[][] matrix = board.getMatrix();
         // check y for right
         for (int i = y + 1; i < Board.BOARD_COLS; i++) {
             if (Board.getInstance().isEmptyPosition(new Point(x, i)))
@@ -51,7 +52,7 @@ public class Canon extends Piece {
 
         // Check y for left
         for (int i = y - 1; i >= 0; i--) {
-            if (matrix[x][i] == 0)
+            if (board.isEmptyPosition(new Point(x, i)))
                 result.add(new Point(x, i));
             else {
                 int fuseCordX = x;
@@ -72,7 +73,7 @@ public class Canon extends Piece {
 
         // And also check x for 2 direction top and bottom
         for (int i = x + 1; i < Board.BOARD_ROWS; i++) {
-            if (matrix[i][y] == 0)
+            if (board.isEmptyPosition(new Point(i, y)))
                 result.add(new Point(i, y));
             else {
                 int fuseCordX = i;
@@ -92,7 +93,7 @@ public class Canon extends Piece {
         }
         
         for (int i = x - 1; i >= 0; i--) {
-            if (matrix[i][y] == 0)
+            if (board.isEmptyPosition(new Point(i, y)))
                 result.add(new Point(i, y));
             else {
                 int fuseCordX = i;

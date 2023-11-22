@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import constants.Constants;
+
 public class General extends Piece {
 
     public General(Color color) {
@@ -11,7 +13,7 @@ public class General extends Piece {
         this.code = 5;
         if(color.equals(Color.BLACK))
             this.code *= -1;
-        this.strCode = "T";
+        this.strCode = Constants.GENERAL_STR_CODE;
     }
 
     @Override

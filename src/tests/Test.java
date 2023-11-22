@@ -12,15 +12,18 @@ public class Test {
     public static void testCloneBoard() throws CloneNotSupportedException {
         Board newBoard = (Board) board.clone();
 
-        System.out.println("----------------- Board Address Location ---------------------");
+        System.out.println("----------------- Board Address Location ----------------------");
         System.out.println(board);
         System.out.println(newBoard);
-        System.out.println("----------------- Hashmap piece Address Location ------------------");
+        System.out.println("------------------- List pieces Address Location --------------");
+        System.out.println(Integer.toHexString(board.getPieces().hashCode()));
+        System.out.println(Integer.toHexString(newBoard.getPieces().hashCode()));
+        System.out.println("----------------- Hashmap piece Address Location --------------");
         System.out.println(board.getPieceMap());
         System.out.println(newBoard.getPieceMap());
-        System.out.println("----------------- Test Point Address Location ----------------");
-        System.out.println(board.getPieceMap().get(Constants.RED_GENERAL).getPoint());
-        System.out.println(newBoard.getPieceMap().get(Constants.RED_GENERAL).getPoint());
+        System.out.println("----------------- Piece's Point Address Location --------------");
+        System.out.println(Integer.toHexString(board.getPieceMap().get(Constants.RED_GENERAL).getPoint().hashCode()));
+        System.out.println(Integer.toHexString(newBoard.getPieceMap().get(Constants.RED_GENERAL).getPoint().hashCode()));
     }
 
     public static void testAdvisor() {

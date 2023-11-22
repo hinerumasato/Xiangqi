@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import constants.Constants;
+
 public class Advisor extends Piece {
 
     public Advisor(Color color) {
@@ -11,7 +13,7 @@ public class Advisor extends Piece {
         this.code = 1;
         if(color.equals(Color.BLACK))
             this.code *= -1;
-        this.strCode = "S";
+        this.strCode = Constants.ADVISOR_STR_CODE;
     }
 
     @Override

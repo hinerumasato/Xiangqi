@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
+
 public class Chariot extends Piece {
 
     public Chariot(Color color) {
@@ -10,7 +12,7 @@ public class Chariot extends Piece {
         this.code = 3;
         if(color.equals(Color.BLACK))
             this.code *= -1;
-        this.strCode = "X";
+        this.strCode = Constants.CHARIOT_STR_CODE;
     }
 
     @Override

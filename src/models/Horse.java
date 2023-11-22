@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
+
 public class Horse extends Piece {
 
     public Horse(Color color) {
@@ -10,7 +12,7 @@ public class Horse extends Piece {
         this.code = 6;
         if (color.equals(Color.BLACK))
             this.code *= -1;
-        this.strCode = "M";
+        this.strCode = Constants.HORSE_STR_CODE;
     }
 
     @Override
