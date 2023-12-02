@@ -11,11 +11,11 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import controllers.BoardComponentController;
+import enums.EColor;
 import models.Advisor;
 import models.Board;
 import models.Canon;
 import models.Chariot;
-import models.Color;
 import models.Elephant;
 import models.General;
 import models.Horse;
@@ -158,7 +158,7 @@ public class BoardComponent extends JComponent {
             for (Piece pieceModel : piecesModel) {
                 int x, y, width, height;
                 String path = "";
-                if (pieceModel.getColor().equals(Color.RED)) {
+                if (pieceModel.getColor().equals(EColor.RED)) {
                     x = 0;
                     y = 0;
                     width = 100;
@@ -193,7 +193,6 @@ public class BoardComponent extends JComponent {
         }
     }
 
-
     public void setSelectedPiece(Piece selectedPiece) {
         this.selectedPiece = selectedPiece;
     }
@@ -205,5 +204,113 @@ public class BoardComponent extends JComponent {
     public void notifyMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Thông báo", JOptionPane.OK_OPTION);
     }
-    
+
+    public static String getBoardPath() {
+        return BOARD_PATH;
+    }
+
+    public static String getAdvisorPath() {
+        return ADVISOR_PATH;
+    }
+
+    public static String getCannonPath() {
+        return CANNON_PATH;
+    }
+
+    public static String getChariotPath() {
+        return CHARIOT_PATH;
+    }
+
+    public static String getElephantPath() {
+        return ELEPHANT_PATH;
+    }
+
+    public static String getGeneralPath() {
+        return GENERAL_PATH;
+    }
+
+    public static String getHorsePath() {
+        return HORSE_PATH;
+    }
+
+    public static String getSoldierPath() {
+        return SOLDIER_PATH;
+    }
+
+    public static String getHighlightBluePath() {
+        return HIGHLIGHT_BLUE_PATH;
+    }
+
+    public static int getFIT_ROW_VALUE() {
+        return FIT_ROW_VALUE;
+    }
+
+    public static void setFIT_ROW_VALUE(int fIT_ROW_VALUE) {
+        FIT_ROW_VALUE = fIT_ROW_VALUE;
+    }
+
+    public static int getFIT_COL_VALUE() {
+        return FIT_COL_VALUE;
+    }
+
+    public static void setFIT_COL_VALUE(int fIT_COL_VALUE) {
+        FIT_COL_VALUE = fIT_COL_VALUE;
+    }
+
+    public static int getCELL_ROW() {
+        return CELL_ROW;
+    }
+
+    public static void setCELL_ROW(int cELL_ROW) {
+        CELL_ROW = cELL_ROW;
+    }
+
+    public static int getCELL_COL() {
+        return CELL_COL;
+    }
+
+    public static void setCELL_COL(int cELL_COL) {
+        CELL_COL = cELL_COL;
+    }
+
+    public static int getFirstPointX() {
+        return FIRST_POINT_X;
+    }
+
+    public static int getFirstPointY() {
+        return FIRST_POINT_Y;
+    }
+
+    public int getPanelWidth() {
+        return panelWidth;
+    }
+
+    public void setPanelWidth(int panelWidth) {
+        this.panelWidth = panelWidth;
+    }
+
+    public int getPanelHeight() {
+        return panelHeight;
+    }
+
+    public void setPanelHeight(int panelHeight) {
+        this.panelHeight = panelHeight;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public List<BufferedImage> getPiecesImage() {
+        return piecesImage;
+    }
+
+    public void setPiecesImage(List<BufferedImage> piecesImage) {
+        this.piecesImage = piecesImage;
+    }
+
 }

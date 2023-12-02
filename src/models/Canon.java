@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Canon extends Piece {
 
-    public Canon(Color color) {
+    public Canon(EColor color) {
         super(color);
         this.code = 2;
-        if (color.equals(Color.BLACK))
+        if (color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.CANNON_STR_CODE;
     }

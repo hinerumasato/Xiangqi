@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Soldier extends Piece {
 
-    public Soldier(Color color) {
+    public Soldier(EColor color) {
         super(color);
         this.code = 7;
-        if(color.equals(Color.BLACK))
+        if(color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.SOLDIER_STR_CODE;
     }
@@ -33,7 +34,7 @@ public class Soldier extends Piece {
         
         Point top;
 
-        if(this.getColor().equals(Color.RED)) {
+        if(this.getColor().equals(EColor.RED)) {
             top = new Point(x - 1, y);
         } else top = new Point(x + 1, y);
 

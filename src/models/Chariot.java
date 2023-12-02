@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Chariot extends Piece {
 
-    public Chariot(Color color) {
+    public Chariot(EColor color) {
         super(color);
         this.code = 3;
-        if(color.equals(Color.BLACK))
+        if(color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.CHARIOT_STR_CODE;
     }

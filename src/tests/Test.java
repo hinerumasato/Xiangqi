@@ -1,5 +1,6 @@
 package tests;
 
+import AI.Computer;
 import constants.Constants;
 import models.Board;
 import models.Piece;
@@ -57,7 +58,12 @@ public class Test {
         redCannon.setPoint(new Point(3, 8));
     }
 
+    public static void testFutureBoards() {
+        Computer computer = new Computer();
+        System.out.println(computer.getFutureBoards().size());
+    }
+
     public static void main(String[] args) throws Exception {
-        testCloneBoard();
+        testFutureBoards();
     }
 }

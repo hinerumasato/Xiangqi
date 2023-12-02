@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Horse extends Piece {
 
-    public Horse(Color color) {
+    public Horse(EColor color) {
         super(color);
         this.code = 6;
-        if (color.equals(Color.BLACK))
+        if (color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.HORSE_STR_CODE;
     }

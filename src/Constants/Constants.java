@@ -13,6 +13,9 @@ public class Constants {
     public static final String HORSE_STR_CODE = "M";
     public static final String SOLDIER_STR_CODE = "B";
 
+    public static final int OUT_OF_BOARD_POINT_X = -1;
+    public static final int OUT_OF_BOARD_POINT_Y = -1;
+
     public static final String RED = "Đỏ";
     public static final String BLACK = "Đen";
 }

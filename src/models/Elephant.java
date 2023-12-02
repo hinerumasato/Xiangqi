@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Elephant extends Piece {
 
-    public Elephant(Color color) {
+    public Elephant(EColor color) {
         super(color);
         this.code = 4;
-        if (color.equals(Color.BLACK))
+        if (color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.ELEPHANT_STR_CODE;
     }
@@ -40,7 +41,7 @@ public class Elephant extends Piece {
         Point elephantLeftBottom1;
         Point elephantRightBottom1;
 
-        if (this.getColor().equals(Color.RED)) {
+        if (this.getColor().equals(EColor.RED)) {
             // check left top
             if (x - 2 >= Board.BOARD_ROWS / 2 && y - 2 >= 0) {
                 elephantLeftTop = new Point(x - 2, y - 2);

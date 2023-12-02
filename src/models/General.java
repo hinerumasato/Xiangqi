@@ -5,13 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class General extends Piece {
 
-    public General(Color color) {
+    public General(EColor color) {
         super(color);
         this.code = 5;
-        if(color.equals(Color.BLACK))
+        if(color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.GENERAL_STR_CODE;
     }

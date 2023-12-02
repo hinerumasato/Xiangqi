@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Board implements Cloneable {
 
@@ -27,17 +29,22 @@ public class Board implements Cloneable {
         initBoard();
     }
 
+    private boolean isNotOutOfBoardPiece(Piece piece) {
+        return !piece.getPoint().equals(new Point(Constants.OUT_OF_BOARD_POINT_X, Constants.OUT_OF_BOARD_POINT_Y));
+    }
+
     public Board(List<Piece> pieces) {
         try {
 
             this.matrix = new int[BOARD_ROWS][BOARD_COLS];
             this.pieces = new ArrayList<Piece>();
             for (Piece piece : pieces) {
-                this.pieces.add((Piece) piece.clone());
+                if(isNotOutOfBoardPiece(piece))
+                    this.pieces.add((Piece) piece.clone());
             }
             this.pieceMap = new HashMap<String, Piece>();
-            this.pieceMap.put(Constants.RED_GENERAL, getGeneral(Color.RED, this.pieces));
-            this.pieceMap.put(Constants.BLACK_GENERAL, getGeneral(Color.BLACK, this.pieces));
+            this.pieceMap.put(Constants.RED_GENERAL, getGeneral(EColor.RED, this.pieces));
+            this.pieceMap.put(Constants.BLACK_GENERAL, getGeneral(EColor.BLACK, this.pieces));
             initBoard();
         }
         catch(CloneNotSupportedException e) {
@@ -45,7 +52,7 @@ public class Board implements Cloneable {
         }
     }
 
-    private Piece getGeneral(Color color, List<Piece> pieces) {
+    private Piece getGeneral(EColor color, List<Piece> pieces) {
         for (Piece piece : pieces) {
             if(piece.getColor().equals(color) && piece.getStrCode().equals(Constants.GENERAL_STR_CODE))
                 return piece;
@@ -59,10 +66,26 @@ public class Board implements Cloneable {
         return newInstance;
     }
 
+    public List<Piece> copyPieces() {
+        List<Piece> copy = pieces.stream().map(piece -> {
+            try {
+                return (Piece) piece.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).collect(Collectors.toList());
+        return copy;
+    }
+
     public static Board getInstance() {
         if(instance == null)
             instance = new Board();
         return instance;
+    }
+
+    public static void setInstance(Board newInstance) {
+        instance = new Board(newInstance.getPieces());
     }
 
     public void addPiece(Piece piece) {
@@ -71,44 +94,44 @@ public class Board implements Cloneable {
 
     public void initBlackPiecePosition() {
 
-        Piece chariot1 = new Chariot(Color.BLACK);
-        Piece chariot2 = new Chariot(Color.BLACK);
+        Piece chariot1 = new Chariot(EColor.BLACK);
+        Piece chariot2 = new Chariot(EColor.BLACK);
 
         chariot1.setPoint(new Point(0, 0));
         chariot2.setPoint(new Point(0, 8));
 
-        Piece horse1 = new Horse(Color.BLACK);
-        Piece horse2 = new Horse(Color.BLACK);
+        Piece horse1 = new Horse(EColor.BLACK);
+        Piece horse2 = new Horse(EColor.BLACK);
 
         horse1.setPoint(new Point(0, 1));
         horse2.setPoint(new Point(0, 7));
 
-        Piece elephant1 = new Elephant(Color.BLACK);
-        Piece elephant2 = new Elephant(Color.BLACK);
+        Piece elephant1 = new Elephant(EColor.BLACK);
+        Piece elephant2 = new Elephant(EColor.BLACK);
 
         elephant1.setPoint(new Point(0, 2));
         elephant2.setPoint(new Point(0, 6));
 
-        Piece advisor1 = new Advisor(Color.BLACK);
-        Piece advisor2 = new Advisor(Color.BLACK);
+        Piece advisor1 = new Advisor(EColor.BLACK);
+        Piece advisor2 = new Advisor(EColor.BLACK);
 
         advisor1.setPoint(new Point(0, 3));
         advisor2.setPoint(new Point(0, 5));
 
-        Piece general = new General(Color.BLACK);
+        Piece general = new General(EColor.BLACK);
         general.setPoint(new Point(0, 4));
 
-        Piece cannon1 = new Canon(Color.BLACK);
-        Piece cannon2 = new Canon(Color.BLACK);
+        Piece cannon1 = new Canon(EColor.BLACK);
+        Piece cannon2 = new Canon(EColor.BLACK);
 
         cannon1.setPoint(new Point(2, 1));
         cannon2.setPoint(new Point(2, 7));
 
-        Piece soldier1 = new Soldier(Color.BLACK);
-        Piece soldier2 = new Soldier(Color.BLACK);
-        Piece soldier3 = new Soldier(Color.BLACK);
-        Piece soldier4 = new Soldier(Color.BLACK);
-        Piece soldier5 = new Soldier(Color.BLACK);
+        Piece soldier1 = new Soldier(EColor.BLACK);
+        Piece soldier2 = new Soldier(EColor.BLACK);
+        Piece soldier3 = new Soldier(EColor.BLACK);
+        Piece soldier4 = new Soldier(EColor.BLACK);
+        Piece soldier5 = new Soldier(EColor.BLACK);
 
         soldier1.setPoint(new Point(3, 0));
         soldier2.setPoint(new Point(3, 2));
@@ -138,44 +161,44 @@ public class Board implements Cloneable {
 
     public void initRedPiecePosition() {
         // Variables are same as initBlack but x value for each Point is 9
-        Piece chariot1 = new Chariot(Color.RED);
-        Piece chariot2 = new Chariot(Color.RED);
+        Piece chariot1 = new Chariot(EColor.RED);
+        Piece chariot2 = new Chariot(EColor.RED);
 
         chariot1.setPoint(new Point(9, 0));
         chariot2.setPoint(new Point(9, 8));
 
-        Piece horse1 = new Horse(Color.RED);
-        Piece horse2 = new Horse(Color.RED);
+        Piece horse1 = new Horse(EColor.RED);
+        Piece horse2 = new Horse(EColor.RED);
 
         horse1.setPoint(new Point(9, 1));
         horse2.setPoint(new Point(9, 7));
 
-        Piece elephant1 = new Elephant(Color.RED);
-        Piece elephant2 = new Elephant(Color.RED);
+        Piece elephant1 = new Elephant(EColor.RED);
+        Piece elephant2 = new Elephant(EColor.RED);
 
         elephant1.setPoint(new Point(9, 2));
         elephant2.setPoint(new Point(9, 6));
 
-        Piece advisor1 = new Advisor(Color.RED);
-        Piece advisor2 = new Advisor(Color.RED);
+        Piece advisor1 = new Advisor(EColor.RED);
+        Piece advisor2 = new Advisor(EColor.RED);
 
         advisor1.setPoint(new Point(9, 3));
         advisor2.setPoint(new Point(9, 5));
 
-        Piece general = new General(Color.RED);
+        Piece general = new General(EColor.RED);
         general.setPoint(new Point(9, 4));
 
-        Piece cannon1 = new Canon(Color.RED);
-        Piece cannon2 = new Canon(Color.RED);
+        Piece cannon1 = new Canon(EColor.RED);
+        Piece cannon2 = new Canon(EColor.RED);
 
         cannon1.setPoint(new Point(7, 1));
         cannon2.setPoint(new Point(7, 7));
 
-        Piece soldier1 = new Soldier(Color.RED);
-        Piece soldier2 = new Soldier(Color.RED);
-        Piece soldier3 = new Soldier(Color.RED);
-        Piece soldier4 = new Soldier(Color.RED);
-        Piece soldier5 = new Soldier(Color.RED);
+        Piece soldier1 = new Soldier(EColor.RED);
+        Piece soldier2 = new Soldier(EColor.RED);
+        Piece soldier3 = new Soldier(EColor.RED);
+        Piece soldier4 = new Soldier(EColor.RED);
+        Piece soldier5 = new Soldier(EColor.RED);
 
         soldier1.setPoint(new Point(6, 0));
         soldier2.setPoint(new Point(6, 2));
@@ -270,10 +293,10 @@ public class Board implements Cloneable {
         return piece.isInArch();
     }
 
-    public boolean isInArch(Color color, Point point) {
+    public boolean isInArch(EColor color, Point point) {
         int x = point.getX();
         int y = point.getY();
-        if(color.equals(Color.BLACK)) {
+        if(color.equals(EColor.BLACK)) {
             return y >= 3 && y <= 5 && x >= 0 && x <= 2;
         } else {
             return y >= 3 && y <= 5 && x >= 7 && x <= 9;
@@ -284,9 +307,9 @@ public class Board implements Cloneable {
         return pieceMap;
     }
 
-    public boolean isCheckmate(Color color) {
+    public boolean isCheckmate(EColor color) {
         Piece general;
-        if(color.equals(Color.RED))
+        if(color.equals(EColor.RED))
             general = pieceMap.get(Constants.RED_GENERAL);
         else general = pieceMap.get(Constants.BLACK_GENERAL);
 
@@ -300,7 +323,7 @@ public class Board implements Cloneable {
         return false;
     }
 
-    public List<Point> getAllPossibleMovesByColor(Color color) {
+    public List<Point> getAllPossibleMovesByColor(EColor color) {
         List<Point> result = new ArrayList<>();
         for(Piece piece : pieces) {
             if(piece.getColor().equals(color))
@@ -311,7 +334,7 @@ public class Board implements Cloneable {
     }
 
 
-    public boolean isOver(Color color) {
+    public boolean isOver(EColor color) {
         return getAllPossibleMovesByColor(color).isEmpty();
     }
 }

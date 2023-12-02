@@ -5,13 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import constants.Constants;
+import enums.EColor;
 
 public class Advisor extends Piece {
 
-    public Advisor(Color color) {
+    public Advisor(EColor color) {
         super(color);
         this.code = 1;
-        if(color.equals(Color.BLACK))
+        if(color.equals(EColor.BLACK))
             this.code *= -1;
         this.strCode = Constants.ADVISOR_STR_CODE;
     }
