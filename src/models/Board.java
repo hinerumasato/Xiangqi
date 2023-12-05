@@ -316,7 +316,7 @@ public class Board implements Cloneable {
         Point generalPoint = general.getPoint();
 
         for (Piece piece : pieces) {
-            if(piece.getAllPossibleMoves().contains(generalPoint))
+            if(piece.getAllPossibleMoves(this).contains(generalPoint))
                 return true;
         }
 
@@ -327,7 +327,7 @@ public class Board implements Cloneable {
         List<Point> result = new ArrayList<>();
         for(Piece piece : pieces) {
             if(piece.getColor().equals(color))
-                result.addAll(piece.filterPossibleMoves());
+                result.addAll(piece.filterPossibleMoves(this));
         }
 
         return result;
@@ -336,5 +336,17 @@ public class Board implements Cloneable {
 
     public boolean isOver(EColor color) {
         return getAllPossibleMovesByColor(color).isEmpty();
+    }
+
+    public void printStrCodeBoard() {
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[0].length; j++) {
+                Piece piece = getPieceByPoint(new Point(i, j));
+                if(piece != null) {
+                    System.out.print(piece.getStrCode() + " ");
+                } else System.out.print("  ");
+            }
+            System.out.println();
+        }
     }
 }

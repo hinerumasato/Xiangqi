@@ -124,7 +124,7 @@ public class BoardComponent extends JComponent {
     private void drawHighLight(Graphics g, Piece selectedPiece) {
         if (selectedPiece != null) {
             try {
-                List<Point> posiblePoints = selectedPiece.filterPossibleMoves();
+                List<Point> posiblePoints = selectedPiece.filterPossibleMoves(board);
                 File file = new File(HIGHLIGHT_BLUE_PATH);
                 BufferedImage image = ImageIO.read(file);
 

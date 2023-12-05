@@ -10,6 +10,7 @@ public abstract class Piece implements Cloneable {
     protected Point point;
     protected int code;
     protected String strCode;
+    protected int value;
 
     @Override
     protected abstract Object clone() throws CloneNotSupportedException;
@@ -68,8 +69,8 @@ public abstract class Piece implements Cloneable {
         this.strCode = strCode;
     }
 
-    public boolean canMove(Point point) {
-        List<Point> possibleMoves = filterPossibleMoves();
+    public boolean canMove(Board board, Point point) {
+        List<Point> possibleMoves = filterPossibleMoves(board);
         return possibleMoves.contains(point);
     }
 
@@ -105,33 +106,19 @@ public abstract class Piece implements Cloneable {
         board.initBoard();
     }
 
-    public abstract List<Point> getAllPossibleMoves();
+    public abstract List<Point> getAllPossibleMoves(Board board);
 
-    public List<Point> filterPossibleMoves() {
-        List<Point> possibleMoves = getAllPossibleMoves();
+    public List<Point> filterPossibleMoves(Board board) {
+        List<Point> possibleMoves = getAllPossibleMoves(board);
         List<Point> result = possibleMoves.stream()
                 .filter(point -> !isCheckmateAfterMove(point))
                 .collect(Collectors.toList());
         return result;
     }
 
-    public boolean move(Point point) {
-        boolean canMove;
-        Board board = Board.getInstance();
-        if (canMove = canMove(point)) {
-            Piece opponentPiece = board.getPieceByPoint(point);
-            if (opponentPiece != null) {
-                board.removePiece(opponentPiece);
-            }
-            this.setPoint(point);
-        }
-        board.initBoard();
-        return canMove;
-    }
-
     public boolean move(Board board, Point point) {
         boolean canMove;
-        if (canMove = canMove(point)) {
+        if (canMove = canMove(board, point)) {
             Piece opponentPiece = board.getPieceByPoint(point);
             if (opponentPiece != null) {
                 board.removePiece(opponentPiece);
@@ -163,6 +150,14 @@ public abstract class Piece implements Cloneable {
         if (piece == null)
             return false;
         return piece.getColor().equals(EColor.BLACK);
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
 }

@@ -11,8 +11,11 @@ public class Elephant extends Piece {
     public Elephant(EColor color) {
         super(color);
         this.code = 4;
-        if (color.equals(EColor.BLACK))
+        this.value = Constants.ELEPHANT_VALUE;
+        if (color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.ELEPHANT_STR_CODE;
     }
 
@@ -25,11 +28,10 @@ public class Elephant extends Piece {
     }
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         List<Point> result = new ArrayList<Point>();
         int x = this.getPoint().getX();
         int y = this.getPoint().getY();
-        Board board = Board.getInstance();
 
         Point elephantLeftTop;
         Point elephantRightTop;

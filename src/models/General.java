@@ -12,8 +12,11 @@ public class General extends Piece {
     public General(EColor color) {
         super(color);
         this.code = 5;
-        if(color.equals(EColor.BLACK))
+        this.value = Constants.GENERAL_VALUE;
+        if(color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.GENERAL_STR_CODE;
     }
 
@@ -25,8 +28,7 @@ public class General extends Piece {
         return newInstance;
     }
 
-   private List<Point> isValidPoints(List<Point> points) {
-        Board board = Board.getInstance();
+   private List<Point> isValidPoints(Board board, List<Point> points) {
         List<Point> result = new ArrayList<Point>();
         for (Point point : points) {
             if(board.isInArch(getColor(), point) && (board.isEmptyPosition(point) || board.isOpponentPiece(this, point)))
@@ -37,7 +39,7 @@ public class General extends Piece {
 
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         int x = point.getX();
         int y = point.getY();
 
@@ -46,7 +48,7 @@ public class General extends Piece {
         Point left = new Point(x, y - 1);
         Point right = new Point(x, y + 1);
 
-        return isValidPoints(new ArrayList<Point>(Arrays.asList(top, bottom, left, right)));
+        return isValidPoints(board, new ArrayList<Point>(Arrays.asList(top, bottom, left, right)));
 
     }
     

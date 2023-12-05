@@ -11,8 +11,11 @@ public class Horse extends Piece {
     public Horse(EColor color) {
         super(color);
         this.code = 6;
-        if (color.equals(EColor.BLACK))
+        this.value = Constants.HORSE_VALUE;
+        if (color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.HORSE_STR_CODE;
     }
 
@@ -45,9 +48,9 @@ public class Horse extends Piece {
     }
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         List<Point> result = new ArrayList<Point>();
-        Board board = Board.getInstance();
+        
         Point horseTop = new Point(getPoint().getX() - 1, getPoint().getY());
         Point horseBottom = new Point(getPoint().getX() + 1, getPoint().getY());
         Point horseLeft = new Point(getPoint().getX(), getPoint().getY() - 1);

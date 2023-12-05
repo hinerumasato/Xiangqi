@@ -1,10 +1,11 @@
 package tests;
 
-import AI.Computer;
+import AI.Heuristic;
 import constants.Constants;
 import models.Board;
 import models.Piece;
 import models.Point;
+import utils.ArrayUtil;
 
 public class Test {
 
@@ -29,18 +30,18 @@ public class Test {
 
     public static void testAdvisor() {
         Piece redAdvisor = board.getPieceByPoint(new Point(9, 3));
-        System.out.println(redAdvisor.getAllPossibleMoves());
+        System.out.println(redAdvisor.getAllPossibleMoves(board));
     }
 
     public static void testChariot() {
         Piece chariot = board.getPieces().get(16);
-        System.out.println(chariot.getAllPossibleMoves());
+        System.out.println(chariot.getAllPossibleMoves(board));
 
     }
 
     public static void testCannon() {
         Piece cannon = board.getPieces().get(25);
-        System.out.println(cannon.getAllPossibleMoves());
+        System.out.println(cannon.getAllPossibleMoves(board));
     }
 
     public static void testGeneral() {
@@ -50,7 +51,7 @@ public class Test {
 
     public static void testElephant(){
         Piece elephant = board.getPieces().get(4);
-        System.out.println(elephant.getAllPossibleMoves());
+        System.out.println(elephant.getAllPossibleMoves(board));
     }
 
     public static void testIsCheckmateAfterMove() {
@@ -58,12 +59,21 @@ public class Test {
         redCannon.setPoint(new Point(3, 8));
     }
 
-    public static void testFutureBoards() {
-        Computer computer = new Computer();
-        System.out.println(computer.getFutureBoards().size());
+    public static void testArrayUtilReflect() {
+        int[][] matrix = new int[][] {
+            new int[] {1, 2, 3},
+            new int[] {4, 5, 6},
+            new int[] {7, 8, 9},
+        };
+
+        ArrayUtil.printMatrix(ArrayUtil.reflect(matrix));
     }
 
+    public static void testHeuristic() {
+        Board board = Board.getInstance();
+        System.out.println(Heuristic.compute(board));
+    }
     public static void main(String[] args) throws Exception {
-        testFutureBoards();
+        testHeuristic();
     }
 }

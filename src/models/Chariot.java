@@ -11,8 +11,11 @@ public class Chariot extends Piece {
     public Chariot(EColor color) {
         super(color);
         this.code = 3;
-        if(color.equals(EColor.BLACK))
+        this.value = Constants.CHARIOT_VALUE;
+        if(color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.CHARIOT_STR_CODE;
     }
 
@@ -26,11 +29,10 @@ public class Chariot extends Piece {
 
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         List<Point> result = new ArrayList<Point>();
         int x = this.getPoint().getX();
         int y = this.getPoint().getY();
-        Board board = Board.getInstance();
         // Check y for right
         for (int i = y + 1; i < Board.BOARD_COLS; i++) {
             Point p = new Point(x, i);

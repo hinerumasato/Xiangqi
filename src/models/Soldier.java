@@ -11,8 +11,11 @@ public class Soldier extends Piece {
     public Soldier(EColor color) {
         super(color);
         this.code = 7;
-        if(color.equals(EColor.BLACK))
+        this.value = Constants.SOLDIER_VALUE;
+        if(color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.SOLDIER_STR_CODE;
     }
 
@@ -25,9 +28,8 @@ public class Soldier extends Piece {
     }
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         List<Point> result = new ArrayList<Point>();
-        Board board = Board.getInstance();
 
         int x = getPoint().getX();
         int y = getPoint().getY();

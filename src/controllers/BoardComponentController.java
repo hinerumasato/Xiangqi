@@ -57,7 +57,7 @@ public class BoardComponentController extends MouseAdapter {
             Piece piece = boardComponent.getSelectedPiece();
 
             if (!point.equals(piece.getPoint())) {
-                boolean moved = piece.move(point);
+                boolean moved = piece.move(board, point);
                 if (moved) {
                     changeTurn();
                     updateComponent();
@@ -84,7 +84,7 @@ public class BoardComponentController extends MouseAdapter {
 
     private void computerVersusHandler(MouseEvent e) {
         Board board = Board.getInstance();
-
+        
         if (!isSelected) {
             Point point = calculatePoint(e);
             if (!board.isEmptyPosition(point)) {
@@ -98,16 +98,16 @@ public class BoardComponentController extends MouseAdapter {
         } else {
             Point point = calculatePoint(e);
             Piece piece = boardComponent.getSelectedPiece();
-            Computer computer = new Computer();
-
+            
             if (!point.equals(piece.getPoint())) {
-                boolean moved = piece.move(point);
+                boolean moved = piece.move(board, point);
                 if (moved) {
-
+                    
                     changeTurn();
                     updateComponent();
                     checkAlert();
 
+                    Computer computer = new Computer(board);
                     computer.move();
                     boardComponent.setBoard(Board.getInstance());
                     changeTurn();

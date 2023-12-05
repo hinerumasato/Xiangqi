@@ -18,4 +18,12 @@ public class Constants {
 
     public static final String RED = "Đỏ";
     public static final String BLACK = "Đen";
+
+    public static final int GENERAL_VALUE = 6000;
+    public static final int CHARIOT_VALUE = 600;
+    public static final int CANNON_VALUE = 285;
+    public static final int HORSE_VALUE = 270;
+    public static final int ELEPHANT_VALUE = 120;
+    public static final int ADVISOR_VALUE = 120;
+    public static final int SOLDIER_VALUE = 30;
 }

@@ -12,8 +12,11 @@ public class Advisor extends Piece {
     public Advisor(EColor color) {
         super(color);
         this.code = 1;
-        if(color.equals(EColor.BLACK))
+        this.value = Constants.ADVISOR_VALUE;
+        if(color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.ADVISOR_STR_CODE;
     }
 
@@ -25,8 +28,7 @@ public class Advisor extends Piece {
         return newInstance;
     }
 
-    private List<Point> isValidPoints(List<Point> points) {
-        Board board = Board.getInstance();
+    private List<Point> isValidPoints(Board board, List<Point> points) {
         List<Point> result = new ArrayList<Point>();
         for (Point point : points) {
             if(board.isInArch(getColor(), point) && (board.isEmptyPosition(point) || board.isOpponentPiece(this, point)))
@@ -37,7 +39,7 @@ public class Advisor extends Piece {
 
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         int x = point.getX();
         int y = point.getY();
 
@@ -46,7 +48,7 @@ public class Advisor extends Piece {
         Point bottomLeft = new Point(x + 1, y - 1);
         Point bottomRight = new Point(x + 1, y + 1);
 
-        return isValidPoints(new ArrayList<Point>(Arrays.asList(topLeft, topRight, bottomLeft, bottomRight)));
+        return isValidPoints(board, new ArrayList<Point>(Arrays.asList(topLeft, topRight, bottomLeft, bottomRight)));
 
     }
     

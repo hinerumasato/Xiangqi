@@ -11,8 +11,11 @@ public class Canon extends Piece {
     public Canon(EColor color) {
         super(color);
         this.code = 2;
-        if (color.equals(EColor.BLACK))
+        this.value = Constants.CANNON_VALUE;
+        if (color.equals(EColor.BLACK)) {
             this.code *= -1;
+            this.value *= -1;
+        }
         this.strCode = Constants.CANNON_STR_CODE;
     }
 
@@ -25,11 +28,10 @@ public class Canon extends Piece {
     }
 
     @Override
-    public List<Point> getAllPossibleMoves() {
+    public List<Point> getAllPossibleMoves(Board board) {
         List<Point> result = new ArrayList<Point>();
         int x = this.getPoint().getX();
         int y = this.getPoint().getY();
-        Board board = Board.getInstance();
         // check y for right
         for (int i = y + 1; i < Board.BOARD_COLS; i++) {
             if (Board.getInstance().isEmptyPosition(new Point(x, i)))
