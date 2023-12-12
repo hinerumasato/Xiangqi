@@ -3,13 +3,16 @@ package controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import AI.AlphaBetaPrunning;
 import AI.Computer;
+import AI.Minimax;
 import constants.Constants;
 import enums.EColor;
 import enums.EPlayer;
 import models.Board;
 import models.Piece;
 import models.Point;
+import utils.Benchmark;
 import views.BoardComponent;
 
 public class BoardComponentController extends MouseAdapter {
@@ -84,7 +87,7 @@ public class BoardComponentController extends MouseAdapter {
 
     private void computerVersusHandler(MouseEvent e) {
         Board board = Board.getInstance();
-        
+
         if (!isSelected) {
             Point point = calculatePoint(e);
             if (!board.isEmptyPosition(point)) {
@@ -98,19 +101,26 @@ public class BoardComponentController extends MouseAdapter {
         } else {
             Point point = calculatePoint(e);
             Piece piece = boardComponent.getSelectedPiece();
-            
+
             if (!point.equals(piece.getPoint())) {
                 boolean moved = piece.move(board, point);
                 if (moved) {
-                    
+
                     changeTurn();
                     updateComponent();
+                    repaintComponent();
                     checkAlert();
 
                     Computer computer = new Computer(board);
+                    computer.setMoveAlgorithm(new Minimax());
+
+                    Benchmark.startBenchmark();
                     computer.move();
                     boardComponent.setBoard(Board.getInstance());
                     changeTurn();
+                    Benchmark.endBenchmark();
+
+                    System.out.println(Benchmark.getBenchmarkResult());
 
                     updateComponent();
                     checkAlert();
