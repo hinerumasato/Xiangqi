@@ -1,11 +1,12 @@
 package AI;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import models.Board;
 
-public class Node {
+public class Node implements Comparable<Node> {
     private Board board;
     private List<Node> neighbors;
     private int heuristicValue;
@@ -56,6 +57,11 @@ public class Node {
 
     public void setHeuristicValue(int heuristicValue) {
         this.heuristicValue = heuristicValue;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return Integer.compare(Heuristic.compute(board), Heuristic.compute(o.getBoard()));
     }
 
 }
