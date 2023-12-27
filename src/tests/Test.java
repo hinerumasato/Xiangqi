@@ -1,7 +1,7 @@
 package tests;
 
 import AI.Heuristic;
-import constants.Constants;
+import Constants.Constants;
 import models.Board;
 import models.Piece;
 import models.Point;

@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import AI.AlphaBetaPrunning;
 import AI.Computer;
 import AI.Minimax;
-import constants.Constants;
+import Constants.Constants;
 import enums.EColor;
 import enums.EPlayer;
 import models.Board;

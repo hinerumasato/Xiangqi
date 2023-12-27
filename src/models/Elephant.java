@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.Constants;
+import Constants.Constants;
 import enums.EColor;
 
 public class Elephant extends Piece {

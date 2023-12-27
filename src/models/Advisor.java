@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import constants.Constants;
+import Constants.Constants;
 import enums.EColor;
 
 public class Advisor extends Piece {

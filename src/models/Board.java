@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import constants.Constants;
+import Constants.Constants;
 import enums.EColor;
 
 public class Board implements Cloneable {

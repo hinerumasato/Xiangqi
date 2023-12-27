@@ -19,7 +19,7 @@ public class Game extends JFrame {
     private Board board;
 
     public Game() {
-        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setSize(WINDOW_WIDTH / 2, WINDOW_HEIGHT);
         setTitle(TITLE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -29,7 +29,7 @@ public class Game extends JFrame {
         this.rightPanel = new JPanel();
         this.board = Board.getInstance();
 
-        setLayout(new GridLayout(1, 2));
+        setLayout(new GridLayout(1, 1));
 
         
         BoardComponent boardComponent = new BoardComponent(board, Game.WINDOW_WIDTH / 2, Game.WINDOW_HEIGHT);
@@ -39,7 +39,7 @@ public class Game extends JFrame {
         leftPanel.setBorder(BorderFactory.createTitledBorder("Xiangqi"));
 
         getContentPane().add(leftPanel);
-        getContentPane().add(rightPanel);
+        // getContentPane().add(rightPanel);
 
         revalidate();
         repaint();

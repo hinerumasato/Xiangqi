@@ -1,4 +1,4 @@
-package constants;
+package Constants;
 
 public class Constants {
     public static final String RED_GENERAL = "RED_GENERAL";
