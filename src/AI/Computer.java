@@ -18,6 +18,7 @@ public class Computer {
     public void move() {
         int bestMove = moveAlgorithm.move();
         Node node = ((AMoveAlgorithm) moveAlgorithm).getNode();
+        System.out.println(node.getNeighbors().size());
 
         for (Node neighbor : node.getNeighbors()) {
             if (neighbor.getHeuristicValue() == bestMove) {

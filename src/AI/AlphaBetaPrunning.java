@@ -1,5 +1,7 @@
 package AI;
 
+import enums.EColor;
+
 public class AlphaBetaPrunning extends AMoveAlgorithm {
 
     public AlphaBetaPrunning() {
@@ -21,7 +23,10 @@ public class AlphaBetaPrunning extends AMoveAlgorithm {
         } 
         else {
             if(isMax) {
-                for (Node neighbor : node.getNeighbors()) {
+                for (Node neighbor : getFutureNodes(node.getBoard(), EColor.RED)) {
+                    if(depth == DEPTH) {
+                        node.addNeighbor(neighbor);
+                    }
                     alpha = Math.max(alpha, alphaBetaPrunning(neighbor, depth - 1, alpha, beta, MIN));
                     neighbor.setHeuristicValue(alpha);
                     if(alpha >= beta) break;
@@ -29,7 +34,9 @@ public class AlphaBetaPrunning extends AMoveAlgorithm {
                 return alpha;
             }
             else {
-                for (Node neighbor : node.getNeighbors()) {
+                for (Node neighbor : getFutureNodes(node.getBoard(), EColor.BLACK)) {
+                    if(depth == DEPTH)
+                        node.addNeighbor(neighbor);
                     beta = Math.min(beta, alphaBetaPrunning(neighbor, depth - 1, alpha, beta, MAX));
                     neighbor.setHeuristicValue(beta);
                     if(alpha >= beta) break;

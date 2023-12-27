@@ -2,7 +2,6 @@ package AI;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import enums.EColor;
 import models.Board;
@@ -12,21 +11,28 @@ import models.Point;
 public abstract class AMoveAlgorithm implements IMoveAlgorithm {
 
     protected Node node;
-    protected static final int DEPTH = 3;
+    protected static final int DEPTH = 5;
     protected static final boolean MAX = true;
     protected static final boolean MIN = false;
 
     public AMoveAlgorithm() {
         this.node = new Node(Board.getInstance());
-        getBoardTree(node, DEPTH, MIN);
     }
 
     public AMoveAlgorithm(Node node) {
         this.node = node;
-        getBoardTree(node, DEPTH, MIN);
     }
 
-    private List<Board> getFutureBoards(Board board, EColor color) {
+    public List<Node> getFutureNodes(Board board, EColor color) {
+        List<Node> result = new ArrayList<Node>();
+        List<Board> futureBoards = getFutureBoards(board, color);
+        for (Board fBoard : futureBoards) {
+            result.add(new Node(fBoard));
+        }
+        return result;
+    }
+
+    public List<Board> getFutureBoards(Board board, EColor color) {
         List<Board> boards = new ArrayList<Board>();
         List<Piece> pieces = board.getPieces();
         pieces.forEach(piece -> {
@@ -53,21 +59,6 @@ public abstract class AMoveAlgorithm implements IMoveAlgorithm {
         });
 
         return boards;
-    }
-
-    private void getBoardTree(Node node, int depth, boolean isMax) {
-        if (depth == 0)
-            return;
-
-        EColor color = isMax ? EColor.RED : EColor.BLACK;
-        List<Board> boards = getFutureBoards(node.getBoard(), color);
-        List<Node> neighbors = boards.stream().map(b -> new Node(b)).collect(Collectors.toList());
-
-        node.addNeighbors(neighbors);
-
-        for (Node neighbor : node.getNeighbors()) {
-            getBoardTree(neighbor, depth - 1, !isMax);
-        }
     }
 
     public Node getNode() {

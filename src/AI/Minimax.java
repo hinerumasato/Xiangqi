@@ -1,5 +1,7 @@
 package AI;
 
+import enums.EColor;
+
 public class Minimax extends AMoveAlgorithm {
 
     public Minimax() {
@@ -22,7 +24,8 @@ public class Minimax extends AMoveAlgorithm {
         else {
             if(isMax) {
                 int bestValue = Integer.MIN_VALUE;
-                for (Node neighbor : node.getNeighbors()) {
+                for (Node neighbor : getFutureNodes(node.getBoard(), EColor.RED)) {
+                    node.addNeighbor(neighbor);
                     int heuristic = Math.max(bestValue, minimax(neighbor, depth - 1, MIN));
                     neighbor.setHeuristicValue(heuristic);
                     if(heuristic > bestValue)
@@ -31,7 +34,8 @@ public class Minimax extends AMoveAlgorithm {
                 return bestValue;
             } else {
                 int wrostValue = Integer.MAX_VALUE;
-                for (Node neighbor : node.getNeighbors()) {
+                for (Node neighbor : getFutureNodes(node.getBoard(), EColor.BLACK)) {
+                    node.addNeighbor(neighbor);
                     int heuristic = Math.min(wrostValue, minimax(neighbor, depth - 1, MAX));
                     neighbor.setHeuristicValue(heuristic);
                     if(heuristic < wrostValue) 

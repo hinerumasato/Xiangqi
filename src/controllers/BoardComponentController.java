@@ -107,12 +107,13 @@ public class BoardComponentController extends MouseAdapter {
                 if (moved) {
 
                     changeTurn();
+                    checkAlert();
                     updateComponent();
                     repaintComponent();
-                    checkAlert();
+
 
                     Computer computer = new Computer(board);
-                    computer.setMoveAlgorithm(new Minimax());
+                    computer.setMoveAlgorithm(new AlphaBetaPrunning());
 
                     Benchmark.startBenchmark();
                     computer.move();

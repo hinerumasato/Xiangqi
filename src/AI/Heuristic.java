@@ -277,6 +277,9 @@ public class Heuristic {
         sum += pieces.stream().mapToInt(piece -> piece.getValue()).sum();
         sum += pieces.stream().mapToInt(piece -> getValueByPiece(piece)).sum();
 
+        // if(board.isOver(EColor.RED)) return Integer.MAX_VALUE;
+        // if(board.isOver(EColor.BLACK)) return Integer.MIN_VALUE;
+
         return sum;
     }
 }
